@@ -10,6 +10,7 @@
 #include "shapes/sphere.h"
 #include "cameras/ortographic.h"
 #include "cameras/perspective.h"
+#include "main.h"
 
 void transformationsExercise()
 {
@@ -104,7 +105,25 @@ void normalTransformExercise()
     Vector3D vTransformed = S.transformVector(v);
     std::cout << "Vector v\' = " << vTransformed << "\n" << std::endl;
 
-    // (...)
+	Vector3D nTransformed = S.transformVector(n);
+	std::cout << "Vector n\' = " << nTransformed << "\n" << std::endl;
+	
+	double dotnv = dot(nTransformed, vTransformed);
+	std::cout << "Dot(n\', v\') = " << dotnv << "\n" << std::endl;
+
+	S.transpose(S);
+	S.inverse(S);
+
+	nTransformed = S.transformVector(n);
+	std::cout << "Vector n\' = " << nTransformed << "\n" << std::endl;
+
+	dotnv = dot(nTransformed, vTransformed);
+	std::cout << "Dot(n\', v\') = " << dotnv << "\n" << std::endl;
+
+
+	
+
+    
 }
 
 void paintingAnImageExercise()
@@ -114,16 +133,23 @@ void paintingAnImageExercise()
     resX = 512;
     resY = 512;
     Film film(resX, resY);
+	
+	double x, y;
+	std::vector<double> pndc;
 
     for(unsigned int col = 0; col < resX; col++)
         {
             for(unsigned int row = 0; row < resY; row++)
             {
-                Vector3D color(255, 0, 0);
-                film.setPixelValue(col, row, color);
+				x = ((col + 0.5) / resX); y = ((row + 0.5) / resY);
+				pndc.push_back(x); pndc.push_back(y);
+				Vector3D color(pndc[0], pndc[1], 0);
+				film.setPixelValue(col, row, color);
+				pndc.clear();
+				
             }
         }
-
+	
     // Save the final result to file
     film.save();
 }
@@ -143,7 +169,7 @@ void filteringAnImageExercise()
     int centerX = resX / 2;
     int centerY = resY / 2;
     int r = std::min(centerX, centerY)/2;
-    for(int lin=0; lin<resX; lin++)
+    /*for(int lin=0; lin<resX; lin++)
     {
         for(int col=0; col<resY; col++)
         {
@@ -151,7 +177,9 @@ void filteringAnImageExercise()
             if( (lin-centerX)*(lin-centerX) + (col-centerY)*(col-centerY) < r*r )
                 f1.setPixelValue(col, lin, Vector3D(1, 1, 0));
         }
-    }
+    }*/
+
+
 
     // Filter-related variables
     // Declare here your filter-related variables
@@ -226,9 +254,9 @@ int main()
     std::cout << separator << "RTIS - Ray Tracer for \"Imatge Sintetica\"" << separator << std::endl;
 
     // ASSIGNMENT 1
-    transformationsExercise();
+    //transformationsExercise();
     //normalTransformExercise();
-    //paintingAnImageExercise();
+    paintingAnImageExercise();
     //filteringAnImageExercise();
 
     // ASSIGNMENT 2

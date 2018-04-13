@@ -22,7 +22,7 @@ void filteringAnImageExercise()
                 f1.setPixelValue(col, lin, Vector3D(1, 1, 0));
         }
     }
-
+ 
     // Filter-related variables
     // Declare here your filter-related variables
     // (e.g., FILTER SIZE)

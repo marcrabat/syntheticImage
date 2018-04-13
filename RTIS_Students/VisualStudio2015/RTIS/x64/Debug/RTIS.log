@@ -1,7 +1,20 @@
-﻿  main.cpp
-c:\users\u114189\desktop\rtis_students\src\main.cpp(173): warning C4101: 'B': variable local sin referencia
-c:\users\u114189\desktop\rtis_students\src\main.cpp(171): warning C4101: 'roots': variable local sin referencia
-c:\users\u114189\desktop\rtis_students\src\main.cpp(173): warning C4101: 'A': variable local sin referencia
-c:\users\u114189\desktop\rtis_students\src\main.cpp(173): warning C4101: 'C': variable local sin referencia
-  RTIS.vcxproj -> C:\Users\u114189\Desktop\RTIS_Students\VisualStudio2015\x64\Debug\RTIS.exe
-  RTIS.vcxproj -> C:\Users\u114189\Desktop\RTIS_Students\VisualStudio2015\x64\Debug\RTIS.pdb (Partial PDB)
+﻿  camera.cpp
+  ortographic.cpp
+  perspective.cpp
+  bitmap.cpp
+  eqsolver.cpp
+  film.cpp
+  matrix4x4.cpp
+  ray.cpp
+  tester.cpp
+  utils.cpp
+  vector3d.cpp
+  main.cpp
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(179): warning C4101: 'B': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(177): warning C4101: 'roots': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(179): warning C4101: 'A': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(179): warning C4101: 'C': variable local sin referencia
+  shape.cpp
+  sphere.cpp
+  Generando código...
+  RTIS.vcxproj -> C:\Users\Marc\Documents\GitHub\syntheticImage\RTIS_Students\VisualStudio2015\x64\Debug\RTIS.exe
