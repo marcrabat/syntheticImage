@@ -156,42 +156,76 @@ void paintingAnImageExercise()
 
 void filteringAnImageExercise()
 {
-    // Create two instances of the film class with the same resolution
-    int resX, resY;
-    resX = 512;
-    resY = 512;
-    Film f1(resX, resY);
-    Film f2(resX, resY);
+	// Create two instances of the film class with the same resolution
+	int resX, resY;
+	resX = 512;
+	resY = 512;
+	Film f1(resX, resY);
+	Film f2(resX, resY);
 
-    // Create the original image
-    //  Draw a circle centered at centerX, centerY (in pixels, image space)
-    //   and with ray r (also in pixels)
-    int centerX = resX / 2;
-    int centerY = resY / 2;
-    int r = std::min(centerX, centerY)/2;
-    /*for(int lin=0; lin<resX; lin++)
-    {
-        for(int col=0; col<resY; col++)
-        {
-            // Use the equation of the sphere to determine the pixel color
-            if( (lin-centerX)*(lin-centerX) + (col-centerY)*(col-centerY) < r*r )
-                f1.setPixelValue(col, lin, Vector3D(1, 1, 0));
-        }
-    }*/
+	// Create the original image
+	//  Draw a circle centered at centerX, centerY (in pixels, image space)
+	//   and with ray r (also in pixels)
+	int centerX = resX / 2;
+	int centerY = resY / 2;
+	int r = std::min(centerX, centerY) / 2;
+	for (int lin = 0; lin<resX; lin++)
+	{
+		for (int col = 0; col<resY; col++)
+		{
+			// Use the equation of the sphere to determine the pixel color
+			if ((lin - centerX)*(lin - centerX) + (col - centerY)*(col - centerY) < r*r)
+				f1.setPixelValue(col, lin, Vector3D(1, 1, 0));
+		}
+	}
 
+	//f1.save();
+	// Filter-related variables
+	// Declare here your filter-related variables
+	// (e.g., FILTER SIZE)
 
+	Film *film1, *film2, *aux;
+	film1 = &f1;
+	film2 = &f2;
 
-    // Filter-related variables
-    // Declare here your filter-related variables
-    // (e.g., FILTER SIZE)
-    //(...)
+	int filterSize = 9;
+	int val = (filterSize - 1) / 2;
+	double red, g, b;
+	// Implement here your image filtering algorithm
+	for (int ite = 0; ite < 100; ite++) {
+		for (int lin = val; lin<resX - val; lin++)
+		{
+			for (int col = val; col + val <resY - val; col++)
+			{
+				//Vector3D c(0, 0, 0);
+				red = 0;
+				g = 0;
+				b = 0;
 
-    // Implement here your image filtering algorithm
-    //(...)
+				for (int i = -val; i <= val; i++)
+				{
+					for (int j = -val; j <= val; j++) {
+						red += film1->getPixelValue(i + lin, j + col).x;
+						g += film1->getPixelValue(i + lin, j + col).y;
+						b += film1->getPixelValue(i + lin, j + col).z;
+					}
+				}
 
-    // DO NOT FORGET TO SAVE YOUR IMAGE!
-    //(...)
+				int fs = filterSize * filterSize;
+				Vector3D color(red / fs, g / fs, b / fs);
+				film2->setPixelValue(col, lin, color);
+			}
+		}
+		aux = film1;
+		film1 = film2;
+		film2 = aux;
+	}
+	
+
+	// DO NOT FORGET TO SAVE YOUR IMAGE!
+	film1->save();
 }
+
 
 void completeSphereClassExercise()
 {
@@ -256,8 +290,8 @@ int main()
     // ASSIGNMENT 1
     //transformationsExercise();
     //normalTransformExercise();
-    paintingAnImageExercise();
-    //filteringAnImageExercise();
+    //paintingAnImageExercise();
+    filteringAnImageExercise();
 
     // ASSIGNMENT 2
     //eqSolverExercise();

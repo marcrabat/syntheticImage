@@ -1,11 +1,11 @@
 ﻿  main.cpp
-c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(207): warning C4101: 'B': variable local sin referencia
-c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(205): warning C4101: 'roots': variable local sin referencia
-c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(207): warning C4101: 'A': variable local sin referencia
-c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(207): warning C4101: 'C': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(241): warning C4101: 'B': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(239): warning C4101: 'roots': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(241): warning C4101: 'A': variable local sin referencia
+c:\users\marc\documents\github\syntheticimage\rtis_students\src\main.cpp(241): warning C4101: 'C': variable local sin referencia
   Generando código
-  1 of 241 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  2 of 188 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    14 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   RTIS.vcxproj -> C:\Users\Marc\Documents\GitHub\syntheticImage\RTIS_Students\VisualStudio2015\x64\Release\RTIS.exe
