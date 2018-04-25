@@ -230,6 +230,30 @@ void completeSphereClassExercise()
 {
 	// Make your intersection tests here
 	// (....)
+	// Translation Matrix
+	int radius = 1;
+	Vector3D delta(0, 0, 3);
+	Matrix4x4 objectToWorld = Matrix4x4::translate(delta);
+
+	Sphere sphere = Sphere(radius, objectToWorld);
+
+	std::cout << sphere << std::endl;
+
+	Vector3D origin = Vector3D(0, 0, 0);
+	Vector3D dir1 = Vector3D(0, 0, 1);
+	Vector3D dir2 = Vector3D(0, 1, 0);
+	Ray ray1 = Ray(origin, dir1);
+	Ray ray2 = Ray(origin, dir2);
+	
+	if (sphere.rayIntersectP(ray1))
+		std::cout << "SPHERE 1 INTERSECT" << std::endl;
+	else 
+		std::cout << "SPHERE 1 NO INTERSECT" << std::endl;
+
+	if (sphere.rayIntersectP(ray2))
+		std::cout << "SPHERE 2 INTERSECT" << std::endl;
+	else
+		std::cout << "SPHERE 2 NO INTERSECT" << std::endl;
 }
 
 void eqSolverExercise()
@@ -239,10 +263,11 @@ void eqSolverExercise()
 
 	double A, B, C;
 
-	// (...)
+	A = 5;
+	B = 6;
+	C = 1;
 
-	bool hasRoots = true;
-	//bool hasRoots = solver.rootQuadEq(A, B, C, roots);
+	bool hasRoots = solver.rootQuadEq(A, B, C, roots);
 
 	if (!hasRoots)
 	{
@@ -252,6 +277,7 @@ void eqSolverExercise()
 	{
 		// SHOW THE SOLUTIONS OF THE EQUATION
 		// (...)
+		std::cout << roots.values[0] << " , " << roots.values[1] << std::endl;
 	}
 }
 
@@ -290,11 +316,11 @@ int main()
 	//transformationsExercise();
 	//normalTransformExercise();
 	//paintingAnImageExercise();
-	filteringAnImageExercise();
+	//filteringAnImageExercise();
 
 	// ASSIGNMENT 2
 	//eqSolverExercise();
-	//completeSphereClassExercise();
+	completeSphereClassExercise();
 	//raytrace();
 
 	std::cout << "\n\n" << std::endl;
