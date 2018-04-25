@@ -22,11 +22,14 @@ Vector3D OrtographicCamera::ndcToCameraSpace(const double u, const double v) con
 Ray OrtographicCamera::generateRay(const double u, const double v) const
 {
     // Convert the from ndc to camera coordinates
-    Vector3D rOrig = ndcToCameraSpace(u, v);
+    Vector3D rOrigin = ndcToCameraSpace(u, v); //All rays origins lie on the image plane
+	Vector3D rDirection = Vector3D(0, 0, 1); //All rays in ortographic camera have the same direction 
 
     // COMPLETE THE REST OF THE FUNCTION
-
-    // Make sure the ray is normalized!
-
-    return Ray();
+	// Make sure the ray is normalized!
+	rDirection = rDirection.normalized();
+	Ray rayWorldCoords = Ray(rOrigin, rDirection);
+	rayWorldCoords = cameraToWorld.transformRay(rayWorldCoords);
+    
+    return rayWorldCoords;
 }

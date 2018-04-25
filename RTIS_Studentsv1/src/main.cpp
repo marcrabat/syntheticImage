@@ -289,18 +289,49 @@ void raytrace()
 	resY = 512;
 	Film film(resX, resY);
 
+	//Sphere properties
+	Vector3D center = Vector3D(0, 0, 3);
+	double radius = 1;
+	Sphere sphere = Sphere(radius, Matrix4x4::translate(center));
+	
+	//Define the ray to be computed and the colours used
+	Ray ray = Ray();
+	Vector3D red = Vector3D(1, 0, 0);
+	Vector3D black = Vector3D(0, 0, 0);
+
 	/* ******************* */
 	/* Orthographic Camera */
 	/* ******************* */
 	Matrix4x4 cameraToWorld; // By default, this gives an ID transform
 							 // meaning that the camera space = world space
 	OrtographicCamera camOrtho(cameraToWorld, film);
+	
+	/*------------------------------------------------------------------------*/
 
-	/* ******************* */
 	/* Perspective Camera */
 	/* ******************* */
 	double fovRadians = Utils::degreesToRadians(60);
 	PerspectiveCamera camPersp(cameraToWorld, fovRadians, film);
+	
+
+
+
+
+	//same algorithm used by the two cameras
+	for (int lin = 0; lin < resX; lin++) {
+		for (int col = 0; col < resY; col++) {
+			//Comment discomment for the version of cameras
+			//ray = camOrtho.generateRay((lin + 0.5) / resX, (col + 0.5) / resY); //generateRay receives a point in ndc coordinates!
+			ray = camPersp.generateRay((lin + 0.5) / resX, (col + 0.5) / resY);
+			if (sphere.rayIntersectP(ray)) {
+				film.setPixelValue(lin, col, red);
+			}
+			else {
+				film.setPixelValue(lin, col, black);
+			}
+		}
+	}
+
 
 	// Save the final result to file
 	film.save();
@@ -320,8 +351,8 @@ int main()
 
 	// ASSIGNMENT 2
 	//eqSolverExercise();
-	completeSphereClassExercise();
-	//raytrace();
+	//completeSphereClassExercise();
+	raytrace();
 
 	std::cout << "\n\n" << std::endl;
 	return 0;

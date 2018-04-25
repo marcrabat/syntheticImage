@@ -1,8 +1,7 @@
-﻿  matrix4x4.cpp
+﻿  main.cpp
   Generando código
-  7 of 206 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
+  2 of 222 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    22 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  RTIS.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_Studentsv1\VisualStudio2015\x64\Release\RTIS.exe
-  RTIS.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_Studentsv1\VisualStudio2015\x64\Release\RTIS.pdb (Full PDB)
+  RTIS.vcxproj -> C:\Users\Marc\Desktop\syntheticImage\RTIS_Studentsv1\VisualStudio2015\x64\Release\RTIS.exe
