@@ -268,7 +268,7 @@ void eqSolverExercise()
 	}
 }
 
-void raytrace()
+void raytrace(int cameraFlag) //flag equal to 0 for orthographic camera, to 1 for perspective camera
 {
 	size_t resX, resY;
 	resX = 512;
@@ -306,8 +306,10 @@ void raytrace()
 	// BY DEFAULT: PERSPECTIVE CAMERA
 	for (int lin = 0; lin < resX; lin++) {
 		for (int col = 0; col < resY; col++) {
-			//ray = camOrtho.generateRay((lin + 0.5) / resX, (col + 0.5) / resY); //generateRay receives a point in ndc coordinates!
-			ray = camPersp.generateRay((lin + 0.5) / resX, (col + 0.5) / resY);
+			if(cameraFlag)
+				ray = camPersp.generateRay((lin + 0.5) / resX, (col + 0.5) / resY);
+			else
+				ray = camOrtho.generateRay((lin + 0.5) / resX, (col + 0.5) / resY); //generateRay receives a point in ndc coordinates!
 			if (sphere.rayIntersectP(ray)) {
 				film.setPixelValue(lin, col, red);
 			}
@@ -335,7 +337,7 @@ int main()
 	// ASSIGNMENT 2
 	//eqSolverExercise();
 	//completeSphereClassExercise();
-	raytrace();
+	raytrace(1); // 0 --> Ortogrpahic, 1 --> Perspective
 
 	std::cout << "\n\n" << std::endl;
 	return 0;
