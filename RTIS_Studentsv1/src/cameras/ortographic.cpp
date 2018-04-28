@@ -26,7 +26,6 @@ Ray OrtographicCamera::generateRay(const double u, const double v) const
 	Vector3D rDirection = Vector3D(0, 0, 1); //All rays in ortographic camera have the same direction 
 
     // COMPLETE THE REST OF THE FUNCTION
-	// Make sure the ray is normalized!
 	rDirection = rDirection.normalized();
 	Ray rayWorldCoords = Ray(rOrigin, rDirection);
 	rayWorldCoords = cameraToWorld.transformRay(rayWorldCoords);

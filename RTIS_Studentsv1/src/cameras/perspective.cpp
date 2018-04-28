@@ -31,14 +31,9 @@ Ray PerspectiveCamera::generateRay(const double u, const double v) const
     Vector3D rOrigin(0, 0, 0);
 	Vector3D rDirection = imagePlanePoint - rOrigin;
 
-    // COMPLETE THE REST OF THE FUNCTION
-
 	rDirection = rDirection.normalized();
 	Ray rayWorldCoords = Ray(rOrigin, rDirection);
 	rayWorldCoords = cameraToWorld.transformRay(rayWorldCoords);
-
-
-    // Make sure the ray is normalized!
 
     return rayWorldCoords;
 }

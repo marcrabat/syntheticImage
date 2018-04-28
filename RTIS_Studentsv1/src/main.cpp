@@ -35,7 +35,6 @@ void transformationsExercise()
 	std::cout << translationMat << separator << std::endl;
 
 	// Scale Matrix
-	//(...)
 	double sx, sy, sz;
 	sx = 2; sy = 1; sz = -1;
 	Vector3D vec2scale(sx, sy, sz);
@@ -127,7 +126,6 @@ void normalTransformExercise()
 
 void paintingAnImageExercise()
 {
-	// Define the film (i.e., image) resolution
 	size_t resX, resY;
 	resX = 512;
 	resY = 512;
@@ -149,13 +147,11 @@ void paintingAnImageExercise()
 		}
 	}
 
-	// Save the final result to file
 	film.save();
 }
 
 void filteringAnImageExercise()
 {
-	// Create two instances of the film class with the same resolution
 	int resX, resY;
 	resX = 512;
 	resY = 512;
@@ -178,11 +174,9 @@ void filteringAnImageExercise()
 		}
 	}
 
-	//f1.save();
-	// Filter-related variables
-	// Declare here your filter-related variables
-	// (e.g., FILTER SIZE)
-
+	//f1.save(); Uncomment this line and comment the other one in order to see the unblured circle
+	
+	///////BLUR FILTER///////
 	Film *film1, *film2, *aux;
 	film1 = &f1;
 	film2 = &f2;
@@ -190,13 +184,13 @@ void filteringAnImageExercise()
 	int filterSize = 9;
 	int val = (filterSize - 1) / 2;
 	double red, g, b;
-	// Implement here your image filtering algorithm
+	
+	//Filtering Algorithm
 	for (int ite = 0; ite < 100; ite++) {
 		for (int lin = val; lin<resX - val; lin++)
 		{
 			for (int col = val; col + val <resY - val; col++)
 			{
-				//Vector3D c(0, 0, 0);
 				red = 0;
 				g = 0;
 				b = 0;
@@ -219,18 +213,12 @@ void filteringAnImageExercise()
 		film1 = film2;
 		film2 = aux;
 	}
-
-
-	// DO NOT FORGET TO SAVE YOUR IMAGE!
 	film1->save();
 }
 
 
 void completeSphereClassExercise()
 {
-	// Make your intersection tests here
-	// (....)
-	// Translation Matrix
 	int radius = 1;
 	Vector3D delta(0, 0, 3);
 	Matrix4x4 objectToWorld = Matrix4x4::translate(delta);
@@ -275,26 +263,24 @@ void eqSolverExercise()
 	}
 	else
 	{
-		// SHOW THE SOLUTIONS OF THE EQUATION
-		// (...)
+		// SOLUTIONS OF THE EQUATION
 		std::cout << roots.values[0] << " , " << roots.values[1] << std::endl;
 	}
 }
 
 void raytrace()
 {
-	// Define the film (i.e., image) resolution
 	size_t resX, resY;
 	resX = 512;
 	resY = 512;
 	Film film(resX, resY);
 
-	//Sphere properties
+	//SPHERE PROPERTIES
 	Vector3D center = Vector3D(0, 0, 3);
 	double radius = 1;
 	Sphere sphere = Sphere(radius, Matrix4x4::translate(center));
 	
-	//Define the ray to be computed and the colours used
+	//RAY DEFINITION
 	Ray ray = Ray();
 	Vector3D red = Vector3D(1, 0, 0);
 	Vector3D black = Vector3D(0, 0, 0);
@@ -313,14 +299,13 @@ void raytrace()
 	double fovRadians = Utils::degreesToRadians(60);
 	PerspectiveCamera camPersp(cameraToWorld, fovRadians, film);
 	
-
-
-
-
-	//same algorithm used by the two cameras
+	//NOTE: BOTH CAMERAS USE THE SAME ALGORITHM FOR GENERATING THE IMAGE
+	// THE MAIN DIFFERENCE IS THAT THE RAY CAN BE GENERATED WITH THE ORTOGRAPHIC CAMERA
+	// OR THE PERSPECTIVE CAMERA.
+	// IN ORDER TO SEE BOTH RESULTS, IT IS NECESSARY COMMENT/DISCOMMENT THE PROPPER LINES WITHIN THIS SNIPPET OF CODE
+	// BY DEFAULT: PERSPECTIVE CAMERA
 	for (int lin = 0; lin < resX; lin++) {
 		for (int col = 0; col < resY; col++) {
-			//Comment discomment for the version of cameras
 			//ray = camOrtho.generateRay((lin + 0.5) / resX, (col + 0.5) / resY); //generateRay receives a point in ndc coordinates!
 			ray = camPersp.generateRay((lin + 0.5) / resX, (col + 0.5) / resY);
 			if (sphere.rayIntersectP(ray)) {
@@ -332,8 +317,6 @@ void raytrace()
 		}
 	}
 
-
-	// Save the final result to file
 	film.save();
 }
 
