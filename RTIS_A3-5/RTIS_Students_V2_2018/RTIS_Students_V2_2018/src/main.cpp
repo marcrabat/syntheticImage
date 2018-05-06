@@ -134,9 +134,9 @@ int main()
 	// Declare the shader
 	Vector3D bgColor(0.0, 0.0, 0.0); // Background color (for rays which do not intersect anything)
 	Vector3D intersectionColor(1, 0, 0);
-	//Shader *shader = new IntersectionShader (intersectionColor, bgColor);
-	//Shader *shader = new DepthShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
-	Shader *shader = new DirectShader(bgColor);
+	Shader *shader = new IntersectionShader(intersectionColor, bgColor);
+	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
+	Shader *directShader = new DirectShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
 
 	// Declare pointers to all the variables which describe the scene
 	Camera *cam;
@@ -147,7 +147,7 @@ int main()
 	buildSceneSphere(cam, film, objectsList, lightSourceList);
 
 	// Launch some rays!
-	raytrace(cam, shader, film, objectsList, lightSourceList);
+	raytrace(cam, directShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
 	std::cout << "\n\nSaving the result to file output.bmp\n" << std::endl;
