@@ -1,9 +1,6 @@
 #include "directshader.h"
 #include "../core/utils.h"
 
-
-
-
 DirectShader::DirectShader(Vector3D color_, double maxDist_, Vector3D bgColor_): color(color_), Shader(bgColor_){}
 
 Vector3D DirectShader::computeColor(const Ray & r, const std::vector<Shape*>& objList, const std::vector<PointLightSource>& lsList) const
@@ -20,7 +17,7 @@ Vector3D DirectShader::computeColor(const Ray & r, const std::vector<Shape*>& ob
 	
 	
 	Vector3D wo = (r.o - itsPoint).normalized();
-	int visibility = 0;
+	//int visibility = 0;
 
 
 	for (size_t lightIndex = 0; lightIndex < lsList.size(); lightIndex++) {
@@ -36,12 +33,11 @@ Vector3D DirectShader::computeColor(const Ray & r, const std::vector<Shape*>& ob
 
 		//to check if the light source is visible from p
 		Ray lightRay = Ray(itsPoint, wi);
+
 		if (!Utils::hasIntersection(lightRay, objList)) {
-			visibility = 1;
-
+			Vector3D reflectance = its.shape->getMaterial().getReflectance(itsNormal, wo, wi);
+			intensity += Utils::multiplyPerCanal(light.getIntensity(itsPoint), reflectance);
 		}
-
-		intensity = dot(li, reflectance) * visibility;
 
 	}
 	
