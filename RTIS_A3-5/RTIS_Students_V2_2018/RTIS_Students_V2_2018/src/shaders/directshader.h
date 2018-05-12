@@ -1,6 +1,7 @@
 #ifndef DIRECTSHADER_H
 #define DIRECTSHADER_H
 #include "shader.h"
+#include "../core/utils.h"
 
 class DirectShader : public Shader
 {
@@ -12,6 +13,7 @@ public:
 
 private:
 	Vector3D color;
+	double maxDist;
 };
 
 #endif // DIRECTSHADER_H

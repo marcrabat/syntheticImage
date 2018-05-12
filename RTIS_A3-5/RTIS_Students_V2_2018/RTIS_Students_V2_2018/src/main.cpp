@@ -51,17 +51,17 @@ void buildSceneSphere(Camera* &cam, Film* &film, std::vector<Shape*>* &objectsLi
 	// Define and place a sphere
 	Matrix4x4 sphereTransform1;
 	sphereTransform1 = sphereTransform1.translate(Vector3D(-1.0, -0.5, 2 * std::sqrt(2.0)));
-	Shape *s1 = new Sphere(0.25, sphereTransform1, green_50);
+	Shape *s1 = new Sphere(0.25, sphereTransform1, blue_50);
 
 	// Define and place a sphere
 	Matrix4x4 sphereTransform2;
 	sphereTransform2 = sphereTransform2.translate(Vector3D(1.0, 0.0, 6));
-	Shape *s2 = new Sphere(1, sphereTransform2, red_50);
+	Shape *s2 = new Sphere(1, sphereTransform2, green_50);
 
 	// Define and place a sphere
 	Matrix4x4 sphereTransform3;
 	sphereTransform3 = sphereTransform3.translate(Vector3D(0.3, -0.75, 3.5));
-	Shape *s3 = new Sphere(0.25, sphereTransform3, blue_50);
+	Shape *s3 = new Sphere(0.25, sphereTransform3, red_50);
 
 	// Store the objects in the object list
 	objectsList->push_back(s1);
@@ -76,12 +76,12 @@ void buildSceneSphere(Camera* &cam, Film* &film, std::vector<Shape*>* &objectsLi
 	// ADD YOUR LIGHT SOURCES HERE
 	PointLightSource light1(Vector3D(5, 0, 0), Vector3D(50, 50, 50));
 	PointLightSource light2(Vector3D(0, 5, 0), Vector3D(50, 50, 50));
-
+	PointLightSource light3(Vector3D(-3, 0, 0), Vector3D(50, 50, 50));
 	// DO NOT FORGET TO STORE THE LIGHT SOURCES IN THE "lightSourceList"
 	lightSourceList = new std::vector<PointLightSource>;
 	lightSourceList->push_back(light1);
 	lightSourceList->push_back(light2);
-	//lightSourceList->push_back(light3);
+	lightSourceList->push_back(light3);
 }
 
 void raytrace(Camera* &cam, Shader* &shader, Film* &film,
