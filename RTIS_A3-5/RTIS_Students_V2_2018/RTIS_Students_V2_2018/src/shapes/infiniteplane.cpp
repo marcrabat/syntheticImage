@@ -14,7 +14,7 @@ Vector3D InfinitePlane::getNormalWorld() const
 bool InfinitePlane::rayIntersectP(const Ray &rayWorld) const
 {
 	// Compute the denominator of the tHit formula
-	double denominator = dot(rayWorld.d, nWorld);
+	float denominator = dot(rayWorld.d, this->nWorld);
 
 	// If the denominator is very close to zero, then the ray and the
 	// plane are almost parallel
@@ -22,7 +22,7 @@ bool InfinitePlane::rayIntersectP(const Ray &rayWorld) const
 		return false;
 
 	// Effectivelly compute the intersection point
-	double tHit = dot((p0World - rayWorld.o), nWorld) / denominator;
+	float tHit = dot((this->p0World - rayWorld.o), this->nWorld) / denominator;
 
 	// Is tHit outside the bounds of the ray segment we want to test intersecion with?
 	if (tHit < rayWorld.minT || tHit > rayWorld.maxT)
@@ -35,25 +35,27 @@ bool InfinitePlane::rayIntersectP(const Ray &rayWorld) const
 bool InfinitePlane::rayIntersect(const Ray &rayWorld, Intersection &its) const
 {
 	// Compute the denominator of the tHit formula
-	double denominator = dot(rayWorld.d, nWorld);
+	float denominator = dot(rayWorld.d, this->nWorld);
 
 	// Test for parallel ray/plane
-	if (std::abs(denominator) < Epsilon)
+	if (std::abs(denominator) < Epsilon) {
 		return false;
+	}
 
 	// Effectivelly compute the intersection distance
-	double tHit = dot((p0World - rayWorld.o), nWorld) / denominator;
+	float tHit = dot((this->p0World - rayWorld.o), this->nWorld) / denominator;
 
 	// Is tHit outside the bounds of the ray segment we want to test intersecion with?
-	if (tHit < rayWorld.minT || tHit > rayWorld.maxT)
+	if (tHit > rayWorld.maxT || tHit < rayWorld.minT)
 		return false;
 
 	// Compute ray/plane the intersection point
-	Vector3D pHit = rayWorld.o + tHit * denominator;
+	Vector3D pHit = rayWorld.o + rayWorld.d * tHit;
 
 	// Fill the intersection details
+
 	its.itsPoint = pHit;
-	its.normal = nWorld;
+	its.normal = getNormalWorld();
 	its.shape = this;
 
 	// Update the ray maxT
@@ -61,9 +63,6 @@ bool InfinitePlane::rayIntersect(const Ray &rayWorld, Intersection &its) const
 
 	return true;
 }
-
-
-
 
 std::string InfinitePlane::toString() const
 {
