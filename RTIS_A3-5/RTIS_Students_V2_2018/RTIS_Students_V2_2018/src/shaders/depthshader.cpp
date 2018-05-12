@@ -17,11 +17,11 @@ Vector3D DepthShader::computeColor(const Ray & r, const std::vector<Shape*>& obj
 		if (Utils::getClosestIntersection(r, objList, closest)) {
 			Vector3D distance = closest.itsPoint - r.o; //resultant vector between ray origin and closest intersection
 			double depth = sqrt(pow(distance.x, 2) + pow(distance.y, 2) + pow(distance.z, 2));
-			if (depth < this->maxDist) {
-				return this->color * (1.0 - depth / this->maxDist);
+			if (depth >= this->maxDist) {
+				return this->bgColor;
 			}
 			else {
-				return this->bgColor;
+				return this->color * (1.0 - depth / this->maxDist);
 			}
 		}
 		return this->bgColor;

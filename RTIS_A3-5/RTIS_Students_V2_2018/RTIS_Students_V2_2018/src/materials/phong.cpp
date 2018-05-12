@@ -32,11 +32,11 @@ Vector3D Phong::computeSpecularReflection(Vector3D ks, const Vector3D & normal, 
 Vector3D Phong::getReflectance(const Vector3D & n, const Vector3D & wo, const Vector3D & wi) const
 {
 	Vector3D reflectance;
-	Vector3D diffuse_reflectance, specular_reflectance;
+	Vector3D diffuse, specular;
 	Vector3D normal = n;
-	diffuse_reflectance = computeDiffuseReflection(this->kd, normal, wi);
-	specular_reflectance = computeSpecularReflection(this->ks, normal, this->n, wo, wi);
-	reflectance = diffuse_reflectance + specular_reflectance;
+	diffuse = computeDiffuseReflection(this->kd, normal, wi);
+	specular = computeSpecularReflection(this->ks, normal, this->n, wo, wi);
+	reflectance = diffuse + specular;
 	return reflectance;
 }
 
