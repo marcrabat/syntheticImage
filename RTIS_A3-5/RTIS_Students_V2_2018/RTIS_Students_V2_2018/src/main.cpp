@@ -50,6 +50,7 @@
 		//Material *mirror = new Phong(Vector3D(1, 0.9, 0.85), Vector3D(1, 0.9, 0.85), 20);
 		Material *mirror = new Mirror(Vector3D(1, 0.9, 0.85));
 		Material *red_100 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.7, 0.2, 0.3), 100);
+		//Material *transmissive = new Transmissive(1.1, Vector3D(1));
 
 
 		/* ******* */

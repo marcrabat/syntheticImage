@@ -17,13 +17,18 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 		Vector3D n = its.normal;
 
 		//if mirror material
-		if (its.shape->getMaterial().hasSpecular())
-		{
+		if (its.shape->getMaterial().hasSpecular()) {
 			Vector3D wr = Utils::computeReflectionDirection(r.d, n);
 			Ray reflectionRay = Ray(p, wr, r.depth + 1);
 			Vector3D reflectedColor = computeColor(reflectionRay, objList, lsList);
 			return reflectedColor;
 		}
+
+		//if transmissive material
+		if (its.shape->getMaterial().hasTransmission()) {
+			//...
+		}
+
 		for (int ls = 0; ls < lsList.size(); ls++) {
 			const PointLightSource light = lsList.at(ls);
 			

@@ -28,7 +28,7 @@ bool Mirror::hasTransmission() const
 
 bool Mirror::hasDiffuseOrGlossy() const
 {
-	return false;
+	return true;
 }
 
 double Mirror::getIndexOfRefraction() const
