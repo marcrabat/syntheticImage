@@ -21,6 +21,7 @@
 #include "materials/material.h"
 #include "materials/phong.h"
 #include "materials/mirror.h"
+#include "materials/transmissive.h"
 
 
 
@@ -46,12 +47,12 @@
 		Material *greenDiffuse = new Phong(Vector3D(0, 0, 0), Vector3D(0.2, 0.7, 0.3), 100);
 		Material *greyDiffuse = new Phong(Vector3D(0, 0, 0), Vector3D(0.8, 0.8, 0.8), 100);
 		Material *blueDiffuse = new Phong(Vector3D(0, 0, 0), Vector3D(0.3, 0.2, 0.7), 100);
-		Material *transmissive = new Phong(Vector3D(1, 1, 0.2), Vector3D(1, 1, 0.2), 20);
+		//Material *transmissive = new Phong(Vector3D(1, 1, 0.2), Vector3D(1, 1, 0.2), 20);
+		Material *transmissive = new Transmissive(1.1, Vector3D(1));
 		//Material *mirror = new Phong(Vector3D(1, 0.9, 0.85), Vector3D(1, 0.9, 0.85), 20);
 		Material *mirror = new Mirror(Vector3D(1, 0.9, 0.85));
 		Material *red_100 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.7, 0.2, 0.3), 100);
-		//Material *transmissive = new Transmissive(1.1, Vector3D(1));
-
+		
 
 		/* ******* */
 		/* Objects */

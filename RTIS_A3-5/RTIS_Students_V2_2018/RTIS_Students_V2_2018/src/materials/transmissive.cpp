@@ -6,9 +6,9 @@ Transmissive::Transmissive()
 {
 }
 
-Transmissive::Transmissive(const double t, const Vector3D & color)
+Transmissive::Transmissive(const double r, const Vector3D & color)
 {
-	this->t = t;
+	this->r = r;
 	this->color = color;
 }
 
@@ -35,5 +35,5 @@ bool Transmissive::hasDiffuseOrGlossy() const
 
 double Transmissive::getIndexOfRefraction() const
 {
-	return 0.0;
+	return this->r;
 }

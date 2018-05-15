@@ -98,6 +98,9 @@ Vector3D Utils::computeReflectionDirection(const Vector3D &rayDirection, const V
 bool Utils::isTotalInternalReflection(const double &eta, const double &cosThetaI,
                                       double &cosThetaT_out)
 {
+	double valueInSqrt = 1 + eta * eta * (cosThetaI * cosThetaI - 1);
+	if (valueInSqrt < 0)
+		return true; //is total internal reflection
     return false;
 }
 
@@ -105,7 +108,8 @@ Vector3D Utils::computeTransmissionDirection(const Ray &r, const Vector3D &norma
                                              const double &eta, const double &cosThetaI,
                                              const double &cosThetaT)
 {
-    return Vector3D(0);
+	Vector3D wt = r.d * eta + normal * (eta * cosThetaI - cosThetaT);
+    return wt;
 }
 
 double Utils::computeReflectanceCoefficient(const double &eta, const double &cosThetaI,

@@ -1,8 +1,5 @@
-﻿  directshader.cpp
-  transmissive.cpp
-  mirror.cpp
+﻿  main.cpp
+  utils.cpp
   Generando código...
-  Omitiendo... (no se detectaron cambios relevantes)
-  main.cpp
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_A3-5\RTIS_Students_V2_2018\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_A3-5\RTIS_Students_V2_2018\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.pdb (Full PDB)

@@ -5,7 +5,7 @@ class Transmissive : public Material
 {
 public:
 	Transmissive();
-	Transmissive(const double t , const Vector3D &color);
+	Transmissive(const double r , const Vector3D &color);
 
 	Vector3D getReflectance(const Vector3D &n, const Vector3D &wo,const Vector3D &wi) const;
 	bool hasSpecular() const;
@@ -13,8 +13,7 @@ public:
 	bool hasDiffuseOrGlossy() const;
 	double getIndexOfRefraction() const;
 
-private:
-	double t;
+	double r;
 	Vector3D color;
 };
 
