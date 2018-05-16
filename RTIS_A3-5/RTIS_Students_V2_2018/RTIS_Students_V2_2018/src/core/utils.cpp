@@ -101,6 +101,7 @@ bool Utils::isTotalInternalReflection(const double &eta, const double &cosThetaI
 	double valueInSqrt = 1 + eta * eta * (cosThetaI * cosThetaI - 1);
 	if (valueInSqrt < 0)
 		return true; //is total internal reflection
+	cosThetaT_out = sqrt(valueInSqrt);
     return false;
 }
 
