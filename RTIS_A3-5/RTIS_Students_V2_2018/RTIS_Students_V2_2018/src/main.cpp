@@ -17,11 +17,13 @@
 #include "shaders/intersectionshader.h"
 #include "shaders/depthshader.h"
 #include "shaders/directshader.h"
+#include "shaders/globalshader.h"
 
 #include "materials/material.h"
 #include "materials/phong.h"
 #include "materials/mirror.h"
 #include "materials/transmissive.h"
+#include "main.h"
 
 
 
@@ -247,6 +249,8 @@ int main()
 	Shader *shader = new IntersectionShader(intersectionColor, bgColor);
 	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
 	Shader *directShader = new DirectShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
+	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.05, 0.05, 0.05));
+
 
 	// Declare pointers to all the variables which describe the scene
 	Camera *cam;
@@ -258,7 +262,7 @@ int main()
 	buildSceneCornellBox(cam, film, objectsList, lightSourceList);
 
 	// Launch some rays!
-	raytrace(cam, directShader, film, objectsList, lightSourceList);
+	raytrace(cam, globalShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
 	std::cout << "\n\nSaving the result to file output.bmp\n" << std::endl;

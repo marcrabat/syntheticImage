@@ -17,7 +17,7 @@ public:
 	virtual Vector3D getReflectance(const Vector3D &n, const Vector3D &wo, const Vector3D &wi) const;
 	Vector3D computeDiffuseReflection(Vector3D kd, const Vector3D & normal, const Vector3D & wi) const;
 	Vector3D computeSpecularReflection(Vector3D ks, const Vector3D & normal, float shininess, const Vector3D & wo, const Vector3D & wi) const;
-
+	Vector3D getDiffuseCoefficient()const;
 };
 
 

@@ -29,6 +29,11 @@ Vector3D Phong::computeSpecularReflection(Vector3D ks, const Vector3D & normal, 
 	return ks * pow(dot(wo,wr), shininess);
 }
 
+Vector3D Phong::getDiffuseCoefficient() const
+{
+	return this->kd;
+}
+
 Vector3D Phong::getReflectance(const Vector3D & n, const Vector3D & wo, const Vector3D & wi) const
 {
 	Vector3D reflectance;
