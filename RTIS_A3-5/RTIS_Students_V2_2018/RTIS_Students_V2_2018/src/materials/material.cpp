@@ -22,4 +22,5 @@ Vector3D Material::getDiffuseCoefficient()const
 		<< std::endl;
 
 	return Vector3D(-1);
-}
+}
+

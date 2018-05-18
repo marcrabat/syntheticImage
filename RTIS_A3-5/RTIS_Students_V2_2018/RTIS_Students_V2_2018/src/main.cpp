@@ -107,7 +107,7 @@ void buildSceneCornellBox(Camera* &cam, Film* &film,
 	Vector3D lightPosition2 = Vector3D(0, offset - 1, 0);
 	Vector3D lightPosition3 = Vector3D(0, offset - 1, offset);
 
-	Vector3D intensity = Vector3D(8, 8, 8); // Radiant intensity (watts/sr)
+	Vector3D intensity = Vector3D(7,7,7); // Radiant intensity (watts/sr)
 	PointLightSource pointLS1(lightPosition1, intensity);
 	PointLightSource pointLS2(lightPosition2, intensity);
 	PointLightSource pointLS3(lightPosition3, intensity);
@@ -250,6 +250,7 @@ int main()
 	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
 	Shader *directShader = new DirectShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
 	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.025, 0.025, 0.025));
+	//Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.04, 0.04, 0.04));
 
 
 	// Declare pointers to all the variables which describe the scene
@@ -262,6 +263,7 @@ int main()
 	buildSceneCornellBox(cam, film, objectsList, lightSourceList);
 
 	// Launch some rays!
+	//raytrace(cam, directShader, film, objectsList, lightSourceList);
 	raytrace(cam, globalShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
