@@ -1,5 +1,4 @@
-﻿  main.cpp
-  utils.cpp
-  Generando código...
+﻿  globalshader.cpp
+c:\users\usuario\desktop\syntheticimage\rtis_a3-5\rtis_students_v2_2018\rtis_students_v2_2018\src\shaders\globalshader.cpp(138): warning C4715: 'GlobalShader::computeColor': no todas las rutas de acceso de control devuelven un valor
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_A3-5\RTIS_Students_V2_2018\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_A3-5\RTIS_Students_V2_2018\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.pdb (Full PDB)

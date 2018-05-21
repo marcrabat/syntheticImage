@@ -19,9 +19,9 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 
 	if (Utils::getClosestIntersection(ray, objList, its)) {
 
-		bool hasDiffuseOrGlossy = its.shape->getMaterial().hasDiffuseOrGlossy();
-		bool hasTransmission = its.shape->getMaterial().hasTransmission();
-		bool hasSpecular = its.shape->getMaterial().hasSpecular();
+		bool hasDiffuseOrGlossy = its.shape->getMaterial().hasDiffuseOrGlossy(); //phong
+		bool hasTransmission = its.shape->getMaterial().hasTransmission(); //transmissive
+		bool hasSpecular = its.shape->getMaterial().hasSpecular();//mirror
 
 		Vector3D p = its.itsPoint;
 		Vector3D normal = its.normal;
@@ -46,23 +46,18 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 					}	
 				}
 			}
+			
 			//TODO: Fer que ens funcioni aixo
 			//Part 2.2, funciona pero no se si hauria d'anar aixi
 			//comentar if part 2.2 i descomentar 3.3 per provar
-			if (typeid(its.shape->getMaterial()).name() == typeid(Phong).name()) {
-				Vector3D kd = its.shape->getMaterial().getDiffuseCoefficient();
-				LoInd += dot(kd, this->at);
-			}
+			/*Vector3D kd = its.shape->getMaterial().getDiffuseCoefficient();
+			LoInd += dot(kd, this->at);*/
 			// fi part 2.2
+			
+			//part 3.2
+			if (ray.depth == 0) {
+				int nSamples = 1;
 
-			// part 3.3
-			/*if (ray.depth == 0) {
-				if (typeid(its.shape->getMaterial()).name() == typeid(Phong).name()) {
-					Vector3D kd = its.shape->getMaterial().getDiffuseCoefficient();
-					Lo += dot(kd, this->at);
-				}
-
-				int nSamples = 2;
 				for (int i = 0; i < nSamples; i++) {
 					Vector3D wi = sampler.getSample(normal);
 					Vector3D r = its.shape->getMaterial().getReflectance(normal, wo, wi);
@@ -74,9 +69,11 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 			else if (ray.depth > 0) {
 				Vector3D kd = its.shape->getMaterial().getDiffuseCoefficient();
 				Vector3D at = this->at;
+				LoInd = dot(kd, at);
+			}
+			//fi part 3.2
 
-				LoInd += dot(kd, at);
-			}*/
+			// part 3.3 TODO
 
 			Lo = LoDir + LoInd;
 		}
