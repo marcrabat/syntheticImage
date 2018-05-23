@@ -6,16 +6,14 @@ Transmissive::Transmissive()
 {
 }
 
-Transmissive::Transmissive(const double r, const Vector3D & color)
+Transmissive::Transmissive(double r_, Vector3D & color_):r(r_),color(color_)
 {
-	this->r = r;
-	this->color = color;
 }
 
 
 Vector3D Transmissive::getReflectance(const Vector3D & n, const Vector3D & wo, const Vector3D & wi) const
 {
-	return Vector3D();
+	return this->color;
 }
 
 bool Transmissive::hasSpecular() const

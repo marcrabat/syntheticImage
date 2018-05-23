@@ -6,14 +6,14 @@ Mirror::Mirror()
 {
 }
 
-Mirror::Mirror(const Vector3D & color)
+Mirror::Mirror(const Vector3D & color_) : color(color_)
 {
-	this->color = color;
+	//this->color = color;
 }
 
 Vector3D Mirror::getReflectance(const Vector3D & n, const Vector3D & wo, const Vector3D & wi) const
 {
-	return Vector3D();
+	return color;
 }
 
 bool Mirror::hasSpecular() const
