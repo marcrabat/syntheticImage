@@ -56,7 +56,7 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 			
 			//part 3.2
 			if (ray.depth == 0) {
-				int nSamples = 1;
+				int nSamples = 2;
 
 				for (int i = 0; i < nSamples; i++) {
 					Vector3D wi = sampler.getSample(normal);
