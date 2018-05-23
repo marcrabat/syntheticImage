@@ -249,7 +249,7 @@ int main()
 	Shader *shader = new IntersectionShader(intersectionColor, bgColor);
 	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
 	Shader *directShader = new DirectShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
-	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.025, 0.025, 0.025));
+	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.05, 0.05, 0.05));
 	//Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.04, 0.04, 0.04));
 
 

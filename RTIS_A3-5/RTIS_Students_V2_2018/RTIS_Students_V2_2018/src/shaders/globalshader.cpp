@@ -56,20 +56,22 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 			
 			//part 3.2
 			if (ray.depth == 0) {
-				int nSamples = 2;
+
+				int nSamples = 175;
 
 				for (int i = 0; i < nSamples; i++) {
-					Vector3D wi = sampler.getSample(normal);
-					Vector3D r = its.shape->getMaterial().getReflectance(normal, wo, wi);
-					Ray secondaryRay = Ray(p, wi, ray.depth + 1);
-					LoInd += Utils::multiplyPerCanal(computeColor(secondaryRay, objList, lsList), r);
+					Vector3D wj = sampler.getSample(normal);
+					Vector3D r = its.shape->getMaterial().getReflectance(normal, wj, wo);
+					Ray secondaryRay = Ray(p, wj, ray.depth + 1);
+					Vector3D col = computeColor(secondaryRay, objList, lsList);
+					LoInd += Utils::multiplyPerCanal(col , r);
 				}
 				LoInd /= 2 * M_PI*nSamples;
 			}
 			else if (ray.depth > 0) {
 				Vector3D kd = its.shape->getMaterial().getDiffuseCoefficient();
 				Vector3D at = this->at;
-				LoInd = dot(kd, at);
+				LoInd = Utils::multiplyPerCanal(at, kd);
 			}
 			//fi part 3.2
 
