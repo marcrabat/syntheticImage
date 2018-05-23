@@ -27,6 +27,8 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 		Vector3D normal = its.normal;
 		Vector3D wo = -ray.d;
 
+		int maxDepth = 10;
+
 
 		if (hasDiffuseOrGlossy) {
 			for (int ls = 0; ls < lsList.size(); ls++) {
@@ -61,17 +63,28 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 
 				for (int i = 0; i < nSamples; i++) {
 					Vector3D wj = sampler.getSample(normal);
-					Vector3D r = its.shape->getMaterial().getReflectance(normal, wj, wo);
+					Vector3D r = its.shape->getMaterial().getReflectance(normal, wo, wj);
 					Ray secondaryRay = Ray(p, wj, ray.depth + 1);
 					Vector3D col = computeColor(secondaryRay, objList, lsList);
 					LoInd += Utils::multiplyPerCanal(col , r);
 				}
 				LoInd /= 2 * M_PI*nSamples;
 			}
-			else if (ray.depth > 0) {
+			else if (ray.depth == maxDepth) {
 				Vector3D kd = its.shape->getMaterial().getDiffuseCoefficient();
 				Vector3D at = this->at;
 				LoInd = Utils::multiplyPerCanal(at, kd);
+			}
+			else {
+				Ray n_ray = Ray(p, normal, ray.depth + 1);
+				Vector3D r = Utils::computeReflectionDirection(wo, normal);
+				Ray perfect_ray = Ray(p, r, ray.depth + 1);
+
+				double aux = dot(-n_ray.d, r);
+				aux += dot(-perfect_ray.d, r);
+
+				LoInd = 1 / (4 * M_PI) * aux;
+
 			}
 			//fi part 3.2
 

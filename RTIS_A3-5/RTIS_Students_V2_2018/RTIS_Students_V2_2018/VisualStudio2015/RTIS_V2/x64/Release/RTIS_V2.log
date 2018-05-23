@@ -1,10 +1,10 @@
-﻿  main.cpp
+﻿  globalshader.cpp
   Generando código
 c:\users\usuario\desktop\syntheticimage\rtis_a3-5\rtis_students_v2_2018\rtis_students_v2_2018\src\shaders\directshader.cpp(72): warning C4715: 'DirectShader::computeColor': no todas las rutas de acceso de control devuelven un valor
-c:\users\usuario\desktop\syntheticimage\rtis_a3-5\rtis_students_v2_2018\rtis_students_v2_2018\src\shaders\globalshader.cpp(118): warning C4715: 'GlobalShader::computeColor': no todas las rutas de acceso de control devuelven un valor
-  33 of 415 functions ( 8.0%) were compiled, the rest were copied from previous compilation.
+c:\users\usuario\desktop\syntheticimage\rtis_a3-5\rtis_students_v2_2018\rtis_students_v2_2018\src\shaders\globalshader.cpp(131): warning C4715: 'GlobalShader::computeColor': no todas las rutas de acceso de control devuelven un valor
+  34 of 415 functions ( 8.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    8 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_A3-5\RTIS_Students_V2_2018\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_A3-5\RTIS_Students_V2_2018\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.pdb (Full PDB)
