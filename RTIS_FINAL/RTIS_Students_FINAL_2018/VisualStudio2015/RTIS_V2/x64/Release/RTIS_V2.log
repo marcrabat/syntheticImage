@@ -1,0 +1,41 @@
+﻿  camera.cpp
+  ortographic.cpp
+  perspective.cpp
+  bitmap.cpp
+  eqsolver.cpp
+  film.cpp
+  intersection.cpp
+  matrix4x4.cpp
+  ray.cpp
+  tester.cpp
+  utils.cpp
+  vector3d.cpp
+  pointlightsource.cpp
+  main.cpp
+  material.cpp
+  mirror.cpp
+  phong.cpp
+  transmissive.cpp
+  hemisphericalsampler.cpp
+  depthshader.cpp
+  Compilando...
+  directshader.cpp
+  globalshader.cpp
+  intersectionshader.cpp
+  normalshader.cpp
+  shader.cpp
+  infiniteplane.cpp
+..\..\src\shapes\infiniteplane.cpp(17): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+..\..\src\shapes\infiniteplane.cpp(25): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+..\..\src\shapes\infiniteplane.cpp(38): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+..\..\src\shapes\infiniteplane.cpp(46): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  shape.cpp
+  sphere.cpp
+  Generando código
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_v2_2018\src\shaders\directshader.cpp(72): warning C4715: 'DirectShader::computeColor': no todas las rutas de acceso de control devuelven un valor
+  415 of 415 functions (100.0%) were compiled, the rest were copied from previous compilation.
+    135 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Generación de código finalizada
+  RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.exe
+  RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_V2_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.pdb (Full PDB)
