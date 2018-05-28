@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -172,6 +172,7 @@
     <ClCompile Include="..\..\src\shapes\mesh.cpp" />
     <ClCompile Include="..\..\src\shapes\shape.cpp" />
     <ClCompile Include="..\..\src\shapes\sphere.cpp" />
+    <ClCompile Include="..\..\src\shapes\triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\cameras\camera.h" />
@@ -203,6 +204,7 @@
     <ClInclude Include="..\..\src\shapes\mesh.h" />
     <ClInclude Include="..\..\src\shapes\shape.h" />
     <ClInclude Include="..\..\src\shapes\sphere.h" />
+    <ClInclude Include="..\..\src\shapes\triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

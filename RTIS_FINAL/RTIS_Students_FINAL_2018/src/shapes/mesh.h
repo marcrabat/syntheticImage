@@ -19,7 +19,10 @@ public:
 
 	bool loadOBJ(const char* filename);
 	void clear();
-	std::vector<std::string> tokenize(const std::string& source, const char* delimiters, bool process_strings = false);
+
+	bool rayIntersect(const Ray &ray, Intersection &its) const;
+	bool rayIntersectP(const Ray &ray) const;
+	
 	static std::map<std::string, Mesh*> sMeshesLoaded;
 
 	std::string name;

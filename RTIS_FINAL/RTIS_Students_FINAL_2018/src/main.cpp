@@ -10,6 +10,7 @@
 
 #include "shapes/sphere.h"
 #include "shapes/infiniteplane.h"
+#include "shapes/mesh.h"
 
 #include "cameras/ortographic.h"
 #include "cameras/perspective.h"
@@ -196,6 +197,38 @@ void buildSceneSphere(Camera* &cam, Film* &film,
 
 }
 
+void buildFinalProjectScene(Camera* &cam, Film* &film,
+	std::vector<Shape*>* &objectsList,
+	std::vector<PointLightSource>* &lightSourceList) 
+{
+
+	//camera
+	Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
+	double fovDegrees = 60;
+	double fovRadians = Utils::degreesToRadians(fovDegrees);
+	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
+
+	//materials
+	Material *red_50 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.6, 0.2, 0.2), 50);
+
+	//scene
+	objectsList = new std::vector<Shape*>;
+
+	Matrix4x4 leeTransform;
+	Mesh *m1 = new Mesh("data/obj/lee.obj", leeTransform, red_50);
+
+	objectsList->push_back(m1);
+
+	//lights
+
+	PointLightSource light1(Vector3D(4, 3, -30), Vector3D(50, 50, 50));
+	PointLightSource light2(Vector3D(2, 1, -30), Vector3D(50, 50, 50));
+
+	lightSourceList = new std::vector<PointLightSource>;
+	lightSourceList->push_back(light1);
+	lightSourceList->push_back(light2);
+}
+
 void raytrace(Camera* &cam, Shader* &shader, Film* &film,
 	std::vector<Shape*>* &objectsList, std::vector<PointLightSource>* &lightSourceList)
 {
@@ -259,11 +292,12 @@ int main()
 
 	// Build the scene
 	//buildSceneSphere(cam, film, objectsList, lightSourceList);
-	buildSceneCornellBox(cam, film, objectsList, lightSourceList);
+	//buildSceneCornellBox(cam, film, objectsList, lightSourceList);
+	buildFinalProjectScene(cam, film, objectsList, lightSourceList);
 
 	// Launch some rays!
 	//raytrace(cam, directShader, film, objectsList, lightSourceList);
-	raytrace(cam, globalShader, film, objectsList, lightSourceList);
+	raytrace(cam, shader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
 	std::cout << "\n\nSaving the result to file output.bmp\n" << std::endl;

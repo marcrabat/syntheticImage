@@ -129,6 +129,9 @@
     <ClCompile Include="..\..\src\core\vector2d.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\shapes\triangle.cpp">
+      <Filter>src\shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\cameras\camera.h">
@@ -217,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\core\vector2d.h">
       <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\shapes\triangle.h">
+      <Filter>src\shapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

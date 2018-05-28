@@ -8,6 +8,8 @@
 
 std::map<std::string, Mesh*> Mesh::sMeshesLoaded;
 
+std::vector<std::string> tokenize(const std::string& source, const char* delimiters, bool process_strings = false);
+
 Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_)
 	:Shape(t_, material_)
 {
@@ -20,6 +22,19 @@ void Mesh::clear()
 	vertices.clear();
 	normals.clear();
 	uvs.clear();
+}
+
+
+bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
+{
+	//falta implementar
+	return false;
+}
+
+bool Mesh::rayIntersectP(const Ray & ray) const
+{
+	//falta implementar
+	return false;
 }
 
 bool Mesh::loadOBJ(const char* filename)
@@ -50,8 +65,8 @@ bool Mesh::loadOBJ(const char* filename)
 	std::vector<Vector2D> indexed_uvs;
 
 
-	Vector3D max(INFINITY);
-	Vector3D min(-INFINITY);
+	Vector3D max(-INFINITY);
+	Vector3D min(INFINITY);
 
 	header.aabb_max = max;
 	header.aabb_min = min;
