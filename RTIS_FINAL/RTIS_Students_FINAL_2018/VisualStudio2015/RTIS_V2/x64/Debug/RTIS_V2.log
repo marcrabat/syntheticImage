@@ -1,3 +1,5 @@
-﻿  main.cpp
+﻿  mesh.cpp
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\mesh.cpp(56): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: vea la declaración de 'fopen'
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.pdb (Full PDB)

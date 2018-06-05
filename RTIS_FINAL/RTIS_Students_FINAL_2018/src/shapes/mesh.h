@@ -42,6 +42,7 @@ public:
 
 	sMeshInfo header;
 
+	std::vector<Shape*> triangles;
 
 	//collision testing
 	/*void* collision_model;

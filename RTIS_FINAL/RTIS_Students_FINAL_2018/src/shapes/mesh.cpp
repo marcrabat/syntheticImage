@@ -5,6 +5,10 @@
 #include <limits>
 #include <sys/stat.h>
 
+#include "triangle.h"
+#include "../materials/material.h"
+#include "../core/utils.h"
+
 
 std::map<std::string, Mesh*> Mesh::sMeshesLoaded;
 
@@ -27,13 +31,21 @@ void Mesh::clear()
 
 bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 {
-	//falta implementar
+	double auxT = ray.maxT;
+
+	if (!Utils::getClosestIntersection(ray, triangles, its))
+		return true;
+
 	return false;
 }
 
 bool Mesh::rayIntersectP(const Ray & ray) const
 {
-	//falta implementar
+	double auxT = ray.maxT;
+
+	if (!Utils::hasIntersection(ray, triangles))
+		return true;
+
 	return false;
 }
 
@@ -131,7 +143,22 @@ bool Mesh::loadOBJ(const char* filename)
 				vertices.push_back(indexed_positions[(unsigned int)(v1.x) - 1]);
 				vertices.push_back(indexed_positions[(unsigned int)(v2.x) - 1]);
 				vertices.push_back(indexed_positions[(unsigned int)(v3.x) - 1]);
+
+				//Here we create the triangles and add them to the list.
+				Vector3D pA = vertices[vertex_i];
+				Vector3D pB = vertices[vertex_i+1];
+				Vector3D pC = vertices[vertex_i+2];
+
+				Triangle * t = new Triangle( pA, pB, pC, material);
+				triangles.push_back(t);
+
+				//add texture
+				//(...)
+
 				//triangles.push_back( VECTOR_INDICES_TYPE(vertex_i, vertex_i+1, vertex_i+2) ); //not needed
+				
+				
+				
 				vertex_i += 3;
 
 				if (indexed_uvs.size() > 0)

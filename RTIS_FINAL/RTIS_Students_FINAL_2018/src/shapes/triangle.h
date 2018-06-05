@@ -7,8 +7,7 @@ class Triangle : public Shape
 {
 public:
     Triangle() = delete;
-	Triangle(const Vector3D &p0_, const Vector3D &normal_,
-                 Material *mat_);
+	Triangle(const Vector3D &pA_, const Vector3D &pB_, const Vector3D &pC_, Material *mat_);
 
     // Get the normal at a surface point in world coordinates
     Vector3D getNormalWorld() const;
@@ -21,10 +20,8 @@ public:
     std::string toString() const;
 
 private:
-    // A point belonging to the plane, and the normal at the plane
-    /* All values are in world coordinates */
-    Vector3D p0World;
-    Vector3D nWorld;
+	Vector3D pA, pB, pC;
+    Vector3D n;
 };
 
 std::ostream &operator<<(std::ostream &out, const Triangle &t);
