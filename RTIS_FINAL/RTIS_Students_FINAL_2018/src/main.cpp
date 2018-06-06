@@ -297,7 +297,7 @@ int main()
 
 	// Launch some rays!
 	//raytrace(cam, directShader, film, objectsList, lightSourceList);
-	raytrace(cam, shader, film, objectsList, lightSourceList);
+	raytrace(cam, directShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
 	std::cout << "\n\nSaving the result to file output.bmp\n" << std::endl;

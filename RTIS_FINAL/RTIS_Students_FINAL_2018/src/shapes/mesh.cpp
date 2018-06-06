@@ -14,10 +14,12 @@ std::map<std::string, Mesh*> Mesh::sMeshesLoaded;
 
 std::vector<std::string> tokenize(const std::string& source, const char* delimiters, bool process_strings = false);
 
-Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_)
+Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_, const std::string texture)
 	:Shape(t_, material_)
 {
 	loadOBJ(name.c_str());
+	withTexture = false;
+	this->texture = "";
 }
 
 void Mesh::clear()

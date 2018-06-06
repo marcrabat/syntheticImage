@@ -22,6 +22,8 @@ public:
     // Return the material associated with the shape
     const Material& getMaterial() const;
 
+	bool withTexture = false;
+
 protected:
     Matrix4x4 objectToWorld;
     Matrix4x4 worldToObject;
