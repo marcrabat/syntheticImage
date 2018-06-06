@@ -1,6 +1,7 @@
 ﻿  main.cpp
+  directshader.cpp
   Generando código
-c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shaders\directshader.cpp(74): warning C4715: 'DirectShader::computeColor': no todas las rutas de acceso de control devuelven un valor
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shaders\directshader.cpp(75): warning C4715: 'DirectShader::computeColor': no todas las rutas de acceso de control devuelven un valor
   35 of 750 functions ( 4.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     17 functions had inline decision re-evaluated but remain unchanged

@@ -58,11 +58,12 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 			Vector3D wo = -r.d;
 			Ray rayShadow = Ray(p, wi.normalized());
 			rayShadow.maxT = wi.length();
+			Vector3D reflectance = its.shape->getMaterial().getReflectance(n.normalized(), wo.normalized(), wi.normalized());
 
 			if (dot(n, wi) > 0) {
 				if (!Utils::hasIntersection(rayShadow, objList)) {
-					Vector3D reflectance = its.shape->getMaterial().getReflectance(n.normalized(), wo.normalized(), wi.normalized());
 					color += Utils::multiplyPerCanal(light.getIntensity(p), reflectance);
+					
 				}
 
 			}

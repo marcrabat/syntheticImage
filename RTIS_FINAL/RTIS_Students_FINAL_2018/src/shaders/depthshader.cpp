@@ -22,6 +22,7 @@ Vector3D DepthShader::computeColor(const Ray & r, const std::vector<Shape*>& obj
 			}
 			else {
 				return this->color * (1.0 - depth / this->maxDist);
+
 			}
 		}
 		return this->bgColor;

@@ -24,7 +24,7 @@
 #include "materials/phong.h"
 #include "materials/mirror.h"
 #include "materials/transmissive.h"
-
+#include <math.h>
 
 
 void buildSceneCornellBox(Camera* &cam, Film* &film,
@@ -203,26 +203,27 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 {
 
 	//camera
-	Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
+	Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
 	double fovDegrees = 60;
 	double fovRadians = Utils::degreesToRadians(fovDegrees);
 	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
 
 	//materials
-	Material *red_50 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.6, 0.2, 0.2), 50);
+	Material *red_50 = new Phong(Vector3D(0.9, 0.1, 0.1), Vector3D(0.6, 0.2, 0.2), 50);
 
 	//scene
 	objectsList = new std::vector<Shape*>;
 
 	Matrix4x4 leeTransform;
-	Mesh *m1 = new Mesh("data/obj/lee.obj", leeTransform, red_50);
+	leeTransform = leeTransform.translate(Vector3D(0.0, 0.0, 0.0));
+	Mesh *m1 = new Mesh("data/obj/deer.obj", leeTransform, red_50);
 
 	objectsList->push_back(m1);
 
 	//lights
 
-	PointLightSource light1(Vector3D(30, 30, -30), Vector3D(50, 50, 50));
-	PointLightSource light2(Vector3D(-15, 30, -30), Vector3D(50, 50, 50));
+	PointLightSource light1(Vector3D(300, -300, -1550), Vector3D(500, 500, 500));
+	PointLightSource light2(Vector3D(-300, 300, -1550), Vector3D(500, 500, 500));
 
 	lightSourceList = new std::vector<PointLightSource>;
 	lightSourceList->push_back(light1);
@@ -281,7 +282,7 @@ int main()
 	Vector3D bgColor(0.0, 0.0, 0.0); // Background color (for rays which do not intersect anything)
 	Vector3D intersectionColor(1, 0, 0);
 	Shader *shader = new IntersectionShader(intersectionColor, bgColor);
-	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
+	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 2000, bgColor);
 	Shader *directShader = new DirectShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
 	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.1, 0.1, 0.1));
 	//Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.04, 0.04, 0.04));
@@ -299,7 +300,7 @@ int main()
 
 	// Launch some rays!
 	//raytrace(cam, directShader, film, objectsList, lightSourceList);
-	raytrace(cam, depthShader, film, objectsList, lightSourceList);
+	raytrace(cam, directShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
 	std::cout << "\n\nSaving the result to file output.bmp\n" << std::endl;
