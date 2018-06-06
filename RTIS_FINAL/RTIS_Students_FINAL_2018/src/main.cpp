@@ -221,12 +221,14 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 
 	//lights
 
-	PointLightSource light1(Vector3D(4, 3, -30), Vector3D(50, 50, 50));
-	PointLightSource light2(Vector3D(2, 1, -30), Vector3D(50, 50, 50));
+	PointLightSource light1(Vector3D(30, 30, -30), Vector3D(50, 50, 50));
+	PointLightSource light2(Vector3D(-15, 30, -30), Vector3D(50, 50, 50));
 
 	lightSourceList = new std::vector<PointLightSource>;
 	lightSourceList->push_back(light1);
 	lightSourceList->push_back(light2);
+
+	m1->printHeaderInfo();
 }
 
 void raytrace(Camera* &cam, Shader* &shader, Film* &film,
@@ -297,7 +299,7 @@ int main()
 
 	// Launch some rays!
 	//raytrace(cam, directShader, film, objectsList, lightSourceList);
-	raytrace(cam, directShader, film, objectsList, lightSourceList);
+	raytrace(cam, depthShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file
 	std::cout << "\n\nSaving the result to file output.bmp\n" << std::endl;

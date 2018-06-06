@@ -19,7 +19,7 @@ Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_, co
 {
 	loadOBJ(name.c_str());
 	withTexture = false;
-	this->texture = "";
+	this->texture = texture;
 }
 
 void Mesh::clear()
@@ -33,9 +33,7 @@ void Mesh::clear()
 
 bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 {
-	double auxT = ray.maxT;
-
-	if (!Utils::getClosestIntersection(ray, triangles, its))
+	if (Utils::getClosestIntersection(ray, triangles, its))
 		return true;
 
 	return false;
@@ -43,12 +41,21 @@ bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 
 bool Mesh::rayIntersectP(const Ray & ray) const
 {
-	double auxT = ray.maxT;
-
-	if (!Utils::hasIntersection(ray, triangles))
+	if (Utils::hasIntersection(ray, triangles))
 		return true;
 
 	return false;
+}
+
+void Mesh::printHeaderInfo()
+{
+	std::cout << "\n\n Here is the header info of the mesh: \n" << std::endl;
+	std::cout << "aabb_max: " << header.aabb_max << "\n" << std::endl;
+	std::cout << "aabb_min: " << header.aabb_min << "\n" << std::endl;
+	std::cout << "center: " << header.center << "\n" << std::endl;
+	std::cout << "halfsize: " << header.halfsize << "\n" << std::endl;
+	std::cout << "radius: " << header.radius << "\n" << std::endl;
+	std::cout << "size: " << header.size << "\n" << std::endl;
 }
 
 bool Mesh::loadOBJ(const char* filename)

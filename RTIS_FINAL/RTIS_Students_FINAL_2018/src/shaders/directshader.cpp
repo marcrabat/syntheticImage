@@ -47,7 +47,8 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 			color = computeColor(reflectionRay, objList, lsList);
 		}
 
-		//
+		//if we are working with textures
+		//(...)
 
 		for (int ls = 0; ls < lsList.size(); ls++) {
 			const PointLightSource light = lsList.at(ls);

@@ -1,5 +1,30 @@
 ﻿  mesh.cpp
-c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\mesh.cpp(56): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\mesh.cpp(58): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: vea la declaración de 'fopen'
+  directshader.cpp
+  main.cpp
+  Generando código...
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shaders\directshader.cpp(73): warning C4715: 'DirectShader::computeColor': no todas las rutas de acceso de control devuelven un valor
+  Compilando...
+  triangle.cpp
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(49): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(55): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  sphere.cpp
+  shape.cpp
+  infiniteplane.cpp
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(17): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(25): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(38): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(46): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+  Generando código...
+  Omitiendo... (no se detectaron cambios relevantes)
+  shader.cpp
+  normalshader.cpp
+  intersectionshader.cpp
+  globalshader.cpp
+  depthshader.cpp
+  utils.cpp
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Debug\RTIS_V2.pdb (Full PDB)

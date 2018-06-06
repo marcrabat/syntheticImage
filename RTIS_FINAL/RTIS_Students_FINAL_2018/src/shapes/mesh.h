@@ -15,7 +15,7 @@ class Mesh : public Shape
 public:
 
 	Mesh();
-	Mesh(const std::string& name, const Matrix4x4 &t_, Material *material_, const std::string texture);
+	Mesh(const std::string& name, const Matrix4x4 &t_, Material *material_, const std::string texture = "");
 
 	bool loadOBJ(const char* filename);
 	void clear();
@@ -43,6 +43,8 @@ public:
 	} sMeshInfo;
 
 	sMeshInfo header;
+
+	void printHeaderInfo();
 
 	std::vector<Shape*> triangles;
 
