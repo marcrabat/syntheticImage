@@ -5,7 +5,7 @@ Triangle::Triangle(const Vector3D &pA_, const Vector3D &pB_, const Vector3D &pC_
 	Shape(Matrix4x4(), mat_),
 	pA(pA_), pB(pB_), pC(pC_)
 { 
-	this->n = cross(pC - pA, pB - pA);
+	this->n = cross(pC - pA, pB - pA).normalized();
 }
 
 Vector3D Triangle::getNormalWorld() const

@@ -209,7 +209,7 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
 
 	//materials
-	Material *red_50 = new Phong(Vector3D(0.9, 0.1, 0.1), Vector3D(0.6, 0.2, 0.2), 50);
+	Material *red_50 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.9, 0.5, 0.5), 100);
 
 	//scene
 	objectsList = new std::vector<Shape*>;
@@ -222,11 +222,11 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 
 	//lights
 
-	PointLightSource light1(Vector3D(300, -300, -1550), Vector3D(500, 500, 500));
-	PointLightSource light2(Vector3D(-300, 300, -1550), Vector3D(500, 500, 500));
+	//PointLightSource light1(Vector3D(300, -300, -1850), Vector3D(500, 500, 500));
+	PointLightSource light2(Vector3D(-300, 300, -2000), Vector3D(5000000, 5000000, 5000000));
 
 	lightSourceList = new std::vector<PointLightSource>;
-	lightSourceList->push_back(light1);
+	//lightSourceList->push_back(light1);
 	lightSourceList->push_back(light2);
 
 	m1->printHeaderInfo();
@@ -283,7 +283,7 @@ int main()
 	Vector3D intersectionColor(1, 0, 0);
 	Shader *shader = new IntersectionShader(intersectionColor, bgColor);
 	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 2000, bgColor);
-	Shader *directShader = new DirectShader(Vector3D(0.4, 1, 0.4), 8, bgColor);
+	Shader *directShader = new DirectShader(bgColor);
 	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.1, 0.1, 0.1));
 	//Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.04, 0.04, 0.04));
 

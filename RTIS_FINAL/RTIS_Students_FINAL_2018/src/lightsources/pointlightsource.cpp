@@ -1,4 +1,5 @@
 #include "pointlightsource.h"
+#include <iostream>
 
 PointLightSource::PointLightSource(Vector3D pos_, Vector3D intensity_) :
     pos(pos_), intensity(intensity_)

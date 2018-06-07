@@ -1,13 +1,13 @@
 #include "directshader.h"
 
-DirectShader::DirectShader(Vector3D color_, double maxDist_, Vector3D bgColor_)
-	:Shader(bgColor_), maxDist(maxDist_), color(color_)
+DirectShader::DirectShader(Vector3D bgColor_)
+	:Shader(bgColor_)
 {}
 
 Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &objList, const std::vector<PointLightSource> &lsList) const 
 {
 
-	Vector3D color = bgColor;
+	Vector3D color;
 	Intersection its;
 
 	if (Utils::getClosestIntersection(r, objList, its)) {
@@ -56,20 +56,29 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 			Vector3D wi = light.getPosition() - p;
 			double maxT = wi.length();
 			Vector3D wo = -r.d;
-			Ray rayShadow = Ray(p, wi.normalized());
-			rayShadow.maxT = wi.length();
-			Vector3D reflectance = its.shape->getMaterial().getReflectance(n.normalized(), wo.normalized(), wi.normalized());
 
-			if (dot(n, wi) > 0) {
+			if (dot(n, wi) <= 0) {
+
+				Vector3D reflectance;
+				reflectance = its.shape->getMaterial().getReflectance(n.normalized(), wo.normalized(), wi.normalized());
+
+				Ray rayShadow = Ray(p, wi.normalized());
+				rayShadow.maxT = wi.length();
+
 				if (!Utils::hasIntersection(rayShadow, objList)) {
 					color += Utils::multiplyPerCanal(light.getIntensity(p), reflectance);
+					//std::cout << "color: " << color << std::endl;
+					//color = Vector3D(1.0, 0.0, 0.0);
 					
 				}
-
 			}
+
 
 		}
 		return color;
+	}
+	else {
+		return bgColor;
 	}
 	
 }

@@ -1,10 +1,8 @@
-﻿  main.cpp
-  directshader.cpp
+﻿  phong.cpp
   Generando código
-c:\users\usuario\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shaders\directshader.cpp(75): warning C4715: 'DirectShader::computeColor': no todas las rutas de acceso de control devuelven un valor
-  35 of 750 functions ( 4.7%) were compiled, the rest were copied from previous compilation.
+  20 of 750 functions ( 2.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    17 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.pdb (Full PDB)
