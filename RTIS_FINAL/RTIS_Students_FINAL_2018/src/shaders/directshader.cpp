@@ -65,10 +65,12 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 				Ray rayShadow = Ray(p, wi.normalized());
 				rayShadow.maxT = wi.length();
 
+				//color = Vector3D(1.0, 0.0, 0.0);
 				if (!Utils::hasIntersection(rayShadow, objList)) {
 					color += Utils::multiplyPerCanal(light.getIntensity(p), reflectance);
 					//std::cout << "color: " << color << std::endl;
-					//color = Vector3D(1.0, 0.0, 0.0);
+
+					//color = Vector3D(0.0, 1.0, 0.0);
 					
 				}
 			}

@@ -203,7 +203,10 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 {
 
 	//camera
+	//DEER
 	Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
+	//LEE
+	//Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
 	double fovDegrees = 60;
 	double fovRadians = Utils::degreesToRadians(fovDegrees);
 	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
@@ -216,17 +219,22 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 
 	Matrix4x4 leeTransform;
 	leeTransform = leeTransform.translate(Vector3D(0.0, 0.0, 0.0));
+	leeTransform = leeTransform.rotate(M_PI, Vector3D(0, 1, 0));
 	Mesh *m1 = new Mesh("data/obj/deer.obj", leeTransform, red_50);
 
 	objectsList->push_back(m1);
 
 	//lights
+	//FOR DEER
+	PointLightSource light1(Vector3D(300, 900, -1850), Vector3D(2500000, 2500000, 2500000));
+	PointLightSource light2(Vector3D(-300, 300, -2000), Vector3D(2500000, 2500000, 2500000));
 
-	//PointLightSource light1(Vector3D(300, -300, -1850), Vector3D(500, 500, 500));
-	PointLightSource light2(Vector3D(-300, 300, -2000), Vector3D(5000000, 5000000, 5000000));
+	//FOR LEE
+	//PointLightSource light1(Vector3D(4, 3, -30), Vector3D(1000, 1000, 1000));
+	//PointLightSource light2(Vector3D(2, 1, -30), Vector3D(1000, 1000, 1000));
 
 	lightSourceList = new std::vector<PointLightSource>;
-	//lightSourceList->push_back(light1);
+	lightSourceList->push_back(light1);
 	lightSourceList->push_back(light2);
 
 	m1->printHeaderInfo();

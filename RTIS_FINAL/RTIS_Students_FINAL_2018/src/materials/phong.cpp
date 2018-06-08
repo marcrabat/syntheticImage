@@ -46,13 +46,13 @@ Vector3D Phong::getReflectance(const Vector3D & n, const Vector3D & wo, const Ve
 		return Vector3D(0.f);
 
 	if (dot(wi,n) <= 0.0)
-		return Vector3D();
-	*/
+		return Vector3D();*/
+	
 	diffuse = computeDiffuseReflection(this->kd, normal, wi);
 	specular = computeSpecularReflection(this->ks, normal, this->n, wo, wi, wr);
 	reflectance = diffuse + specular;
 
-	//std::cout << -reflectance << std::endl;
+	//std::cout << reflectance << std::endl;
 	return -reflectance;
 }
 
