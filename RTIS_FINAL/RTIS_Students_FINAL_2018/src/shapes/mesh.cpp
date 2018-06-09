@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 
 #include "triangle.h"
+#include "box.h"
 #include "../materials/material.h"
 #include "../core/utils.h"
 
@@ -14,12 +15,11 @@ std::map<std::string, Mesh*> Mesh::sMeshesLoaded;
 
 std::vector<std::string> tokenize(const std::string& source, const char* delimiters, bool process_strings = false);
 
-Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_, const std::string texture)
+Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_)
 	:Shape(t_, material_)
 {
 	loadOBJ(name.c_str());
-	withTexture = false;
-	this->texture = texture;
+	boundingBox = new Box(header.aabb_min, header.aabb_max, objectToWorld, material);
 }
 
 void Mesh::clear()
@@ -33,6 +33,9 @@ void Mesh::clear()
 
 bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 {
+	if (!boundingBox->rayIntersectP(ray))
+		return false;
+
 	if (Utils::getClosestIntersection(ray, triangles, its))
 		return true;
 
@@ -41,6 +44,9 @@ bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 
 bool Mesh::rayIntersectP(const Ray & ray) const
 {
+	if (!boundingBox->rayIntersectP(ray))
+		return false;
+
 	if (Utils::hasIntersection(ray, triangles))
 		return true;
 
@@ -158,6 +164,7 @@ bool Mesh::loadOBJ(const char* filename)
 				Vector3D pB = vertices[vertex_i+1];
 				Vector3D pC = vertices[vertex_i+2];
 
+					
 				Triangle * t = new Triangle( pA, pB, pC, material);
 				triangles.push_back(t);
 

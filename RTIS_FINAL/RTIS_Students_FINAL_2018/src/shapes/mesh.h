@@ -15,7 +15,7 @@ class Mesh : public Shape
 public:
 
 	Mesh();
-	Mesh(const std::string& name, const Matrix4x4 &t_, Material *material_, const std::string texture = "");
+	Mesh(const std::string& name, const Matrix4x4 &t_, Material *material_);
 
 	bool loadOBJ(const char* filename);
 	void clear();
@@ -29,8 +29,6 @@ public:
 	std::vector< Vector3D > vertices; //here we store the vertices
 	std::vector< Vector3D > normals;	 //here we store the normals
 	std::vector< Vector2D > uvs;	 //here we store the texture coordinates
-
-	std::string texture;
 
 	typedef struct
 	{
@@ -47,6 +45,8 @@ public:
 	void printHeaderInfo();
 
 	std::vector<Shape*> triangles;
+	Shape* boundingBox;
+
 };
 
 #endif

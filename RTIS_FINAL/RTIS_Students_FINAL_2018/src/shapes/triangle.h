@@ -19,7 +19,6 @@ public:
     // Convert triangle to String
     std::string toString() const;
 
-private:
 	Vector3D pA, pB, pC;
     Vector3D n;
 };

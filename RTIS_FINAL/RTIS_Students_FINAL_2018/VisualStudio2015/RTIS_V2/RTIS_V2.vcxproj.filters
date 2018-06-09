@@ -132,6 +132,9 @@
     <ClCompile Include="..\..\src\shapes\triangle.cpp">
       <Filter>src\shapes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\shapes\box.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\cameras\camera.h">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\shapes\triangle.h">
       <Filter>src\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\shapes\box.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

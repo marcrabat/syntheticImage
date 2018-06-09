@@ -5,12 +5,12 @@ Triangle::Triangle(const Vector3D &pA_, const Vector3D &pB_, const Vector3D &pC_
 	Shape(Matrix4x4(), mat_),
 	pA(pA_), pB(pB_), pC(pC_)
 { 
-	this->n = cross(pC - pA, pB - pA).normalized();
+	this->n = cross((pC_ - pA_), (pB_ - pA_)).normalized();
 }
 
 Vector3D Triangle::getNormalWorld() const
 {
-	return n;
+	return this->n;
 }
 
 bool Triangle::rayIntersectP(const Ray &rayWorld) const
@@ -53,10 +53,11 @@ bool Triangle::rayIntersect(const Ray &rayWorld, Intersection &its) const
 	}
 
 	float tHit = dot((pA - rayWorld.o), n) / denominator;
-	Vector3D pHit = rayWorld.o + rayWorld.d * tHit;
 
 	if (tHit < rayWorld.minT || tHit > rayWorld.maxT)
 		return false;
+
+	Vector3D pHit = rayWorld.o + rayWorld.d * tHit;
 
 	Vector3D vAB = pB - pA;
 	Vector3D vBC = pC - pB;

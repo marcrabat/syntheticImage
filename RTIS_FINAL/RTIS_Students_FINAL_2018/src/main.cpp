@@ -26,6 +26,8 @@
 #include "materials/transmissive.h"
 #include <math.h>
 
+#include <ctime>
+
 
 void buildSceneCornellBox(Camera* &cam, Film* &film,
 	std::vector<Shape*>* &objectsList, std::vector<PointLightSource>* &lightSourceList)
@@ -209,7 +211,10 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 	//Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
 	double fovDegrees = 60;
 	double fovRadians = Utils::degreesToRadians(fovDegrees);
+	std::cout << cameraToWorld << std::endl;
+
 	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
+	
 
 	//materials
 	Material *red_50 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.9, 0.5, 0.5), 100);
@@ -218,15 +223,13 @@ void buildFinalProjectScene(Camera* &cam, Film* &film,
 	objectsList = new std::vector<Shape*>;
 
 	Matrix4x4 leeTransform;
-	leeTransform = leeTransform.translate(Vector3D(0.0, 0.0, 0.0));
-	leeTransform = leeTransform.rotate(M_PI, Vector3D(0, 1, 0));
 	Mesh *m1 = new Mesh("data/obj/deer.obj", leeTransform, red_50);
 
 	objectsList->push_back(m1);
 
 	//lights
 	//FOR DEER
-	PointLightSource light1(Vector3D(300, 900, -1850), Vector3D(2500000, 2500000, 2500000));
+	PointLightSource light1(Vector3D(0, 900, -1950), Vector3D(2500000, 2500000, 2500000));
 	PointLightSource light2(Vector3D(-300, 300, -2000), Vector3D(2500000, 2500000, 2500000));
 
 	//FOR LEE
@@ -277,6 +280,10 @@ void raytrace(Camera* &cam, Shader* &shader, Film* &film,
 
 int main()
 {
+
+	//time variables
+	unsigned t0, t1;
+	t0 = clock();
 	std::string separator = "\n----------------------------------------------\n";
 	std::string separatorStar = "\n**********************************************\n";
 	std::cout << separator << "RTIS - Ray Tracer for \"Imatge Sintetica\"" << separator << std::endl;
@@ -284,6 +291,8 @@ int main()
 	// Create an empty film
 	Film *film;
 	film = new Film(720, 576);
+
+
 
 
 	// Declare the shader
@@ -315,5 +324,10 @@ int main()
 	film->save();
 
 	std::cout << "\n\n" << std::endl;
+
+	//execution time
+	t1 = clock();
+	double time = (double(t1 - t0) / CLOCKS_PER_SEC);
+	std::cout << "Execution Time: " << time << std::endl;
 	return 0;
 }

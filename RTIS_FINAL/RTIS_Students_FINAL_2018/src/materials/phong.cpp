@@ -53,7 +53,7 @@ Vector3D Phong::getReflectance(const Vector3D & n, const Vector3D & wo, const Ve
 	reflectance = diffuse + specular;
 
 	//std::cout << reflectance << std::endl;
-	return -reflectance;
+	return reflectance;
 }
 
 

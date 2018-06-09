@@ -1,8 +1,8 @@
-﻿  main.cpp
+﻿  directshader.cpp
   Generando código
-  37 of 752 functions ( 4.9%) were compiled, the rest were copied from previous compilation.
+  22 of 760 functions ( 2.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.exe
   RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.pdb (Full PDB)
