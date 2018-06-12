@@ -164,8 +164,15 @@ bool Mesh::loadOBJ(const char* filename)
 				Vector3D pB = vertices[vertex_i+1];
 				Vector3D pC = vertices[vertex_i+2];
 
+
+				/*Vector3D nA = normals[vertex_i];
+				Vector3D nB = normals[vertex_i + 1];
+				Vector3D nC = normals[vertex_i + 2];
+				*/
+
+
 					
-				Triangle * t = new Triangle( pA, pB, pC, material);
+				Triangle * t = new Triangle( pC, pB, pA, material);
 				triangles.push_back(t);
 
 				//add texture

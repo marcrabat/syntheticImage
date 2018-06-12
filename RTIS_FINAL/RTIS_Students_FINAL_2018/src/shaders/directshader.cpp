@@ -14,7 +14,7 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 
 		Vector3D p = its.itsPoint;
 		
-		Vector3D n = -its.normal; // TODO: Solve why we are receiving this negative
+		Vector3D n = its.normal; // TODO: Solve why we are receiving this negative
 
 		for (int ls = 0; ls < lsList.size(); ls++) {
 			const PointLightSource light = lsList.at(ls);
@@ -28,15 +28,12 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 				Vector3D reflectance;
 				reflectance = its.shape->getMaterial().getReflectance(n.normalized(), wo.normalized(), wi.normalized());
 
-				Ray rayShadow = Ray(p, wi.normalized());
+				Ray rayShadow = Ray(p + n * 0.0001, wi.normalized());
 				rayShadow.maxT = wi.length();
 
-				//if (!Utils::hasIntersection(rayShadow, objList)) {
-				color += Utils::multiplyPerCanal(light.getIntensity(p), reflectance);
-				//std::cout << "color: " << color << std::endl;
-
-					
-				//}
+				if (!Utils::hasIntersection(rayShadow, objList)) {
+					color += Utils::multiplyPerCanal(light.getIntensity(p), reflectance);		
+				}
 			}
 
 

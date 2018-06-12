@@ -2,6 +2,7 @@
 #define TRIANGLE_H
 
 #include "shape.h"
+#include "../core/vector2d.h"
 
 class Triangle : public Shape
 {

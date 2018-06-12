@@ -199,48 +199,62 @@ void buildSceneSphere(Camera* &cam, Film* &film,
 
 }
 
-void buildFinalProjectScene(Camera* &cam, Film* &film,
-	std::vector<Shape*>* &objectsList,
-	std::vector<PointLightSource>* &lightSourceList) 
+void buildFinalProjectScene(Camera* &cam, Film* &film, std::vector<Shape*>* &objectsList, std::vector<PointLightSource>* &lightSourceList) 
 {
-
-	//camera
-	//DEER
-	Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
-	//LEE
-	//Matrix4x4 cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
-	double fovDegrees = 60;
-	double fovRadians = Utils::degreesToRadians(fovDegrees);
-	std::cout << cameraToWorld << std::endl;
-
-	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
-	
-
 	//materials
-	Material *red_50 = new Phong(Vector3D(0.7, 0.2, 0.3), Vector3D(0.9, 0.5, 0.5), 100);
+	Material *white = new Phong(Vector3D(0.8, 0.8, 0.8), Vector3D(0.6, 0.6, 0.6), 100);
 
 	//scene
 	objectsList = new std::vector<Shape*>;
 
-	Matrix4x4 leeTransform;
-	Mesh *m1 = new Mesh("data/obj/deer.obj", leeTransform, red_50);
+	int whatMesh = 1;
+	Matrix4x4 mTransform;
+	Matrix4x4 cameraToWorld;
+	Mesh *m;
+	PointLightSource *light1, *light2;
+	std::cout << "Select a mesh: \n" << "1.- Deer \n2.- Cat \n3.- Lee" << std::endl;
+	std::cin >> whatMesh;
 
-	objectsList->push_back(m1);
+	switch (whatMesh) {
+		case 1: m = new Mesh("data/obj/deer.obj", mTransform, white);
+			cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
+			light1 = new PointLightSource(Vector3D(0, 900, -1850), Vector3D(2500000, 2500000, 2500000));
+			light2 = new PointLightSource(Vector3D(-300, 1200, -1700), Vector3D(2500000, 2500000, 2500000));
+			break;
+		case 2: m = new Mesh("data/obj/cat.obj", mTransform, white);
+			cameraToWorld = Matrix4x4::translate(Vector3D(0, 300, -800));
+			light1 = new PointLightSource(Vector3D(50, 400, -550), Vector3D(200000, 200000, 200000));
+			light2 = new PointLightSource(Vector3D(-50, 600, -400), Vector3D(200000, 200000, 200000));
+			break;
+		case 3: m = new Mesh("data/obj/lee.obj", mTransform, white);
+			cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
+			light1 = new PointLightSource(Vector3D(4, 3, -30), Vector3D(1000, 1000, 1000));
+			light2 = new PointLightSource(Vector3D(2, 1, -30), Vector3D(1000, 1000, 1000));
+			break;
+		default:m = new Mesh("data/obj/deer.obj", mTransform, white);
+			cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
+			light1 = new PointLightSource(Vector3D(0, 900, -1950), Vector3D(2500000, 2500000, 2500000));
+			light2 = new PointLightSource(Vector3D(-300, 300, -2000), Vector3D(2500000, 2500000, 2500000));
+	}
+	//camera
+	double fovDegrees = 60;
+	double fovRadians = Utils::degreesToRadians(fovDegrees);
+	cam = new PerspectiveCamera(cameraToWorld, fovRadians, *film);
+
+	//plane
+
+	Material *greyDiffuse = new Phong(Vector3D(0, 0, 0), Vector3D(0.8, 0.8, 0.8), 100);
+	Shape *bottomPlan = new InfinitePlane(Vector3D(0, -0.3, 0), Vector3D(0, 1, 0), greyDiffuse);
+	objectsList->push_back(bottomPlan);
+
+	objectsList->push_back(m);
 
 	//lights
-	//FOR DEER
-	PointLightSource light1(Vector3D(0, 900, -1950), Vector3D(2500000, 2500000, 2500000));
-	PointLightSource light2(Vector3D(-300, 300, -2000), Vector3D(2500000, 2500000, 2500000));
-
-	//FOR LEE
-	//PointLightSource light1(Vector3D(4, 3, -30), Vector3D(1000, 1000, 1000));
-	//PointLightSource light2(Vector3D(2, 1, -30), Vector3D(1000, 1000, 1000));
-
 	lightSourceList = new std::vector<PointLightSource>;
-	lightSourceList->push_back(light1);
-	lightSourceList->push_back(light2);
+	lightSourceList->push_back(*light1);
+	lightSourceList->push_back(*light2);
 
-	m1->printHeaderInfo();
+	m->printHeaderInfo();
 }
 
 void raytrace(Camera* &cam, Shader* &shader, Film* &film,
