@@ -14,7 +14,7 @@ Vector3D DirectShader::computeColor(const Ray &r, const std::vector<Shape*> &obj
 
 		Vector3D p = its.itsPoint;
 		
-		Vector3D n = its.normal; // TODO: Solve why we are receiving this negative
+		Vector3D n = its.normal;
 
 		for (int ls = 0; ls < lsList.size(); ls++) {
 			const PointLightSource light = lsList.at(ls);

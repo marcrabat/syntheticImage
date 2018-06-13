@@ -66,7 +66,6 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 				Vector3D at = this->at;
 				LoInd = Utils::multiplyPerCanal(at, kd);
 			}
-			//////////////////////////////////////////////////////////////////////////////////////////////////////////
 			else {
 				Ray n_ray = Ray(p, normal, ray.depth + 1);
 				Vector3D r = Utils::computeReflectionDirection(wo, normal);
@@ -80,7 +79,6 @@ Vector3D GlobalShader::computeColor(const Ray &ray, const std::vector<Shape*> &o
 			}
 			Lo = LoDir + LoInd;
 
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}
 
 		if (hasTransmission) {

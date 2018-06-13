@@ -208,33 +208,50 @@ void buildFinalProjectScene(Camera* &cam, Film* &film, std::vector<Shape*>* &obj
 	objectsList = new std::vector<Shape*>;
 
 	int whatMesh = 1;
+	
 	Matrix4x4 mTransform;
 	Matrix4x4 cameraToWorld;
 	Mesh *m;
 	PointLightSource *light1, *light2;
-	std::cout << "Select a mesh: \n" << "1.- Deer \n2.- Cat \n3.- Lee" << std::endl;
+	std::cout << "Select a mesh: \n" << "1.- Deer (40-50sec) \n2.- Cat (20-30sec)\n3.- Lee (3-4min)\n4.- Woman (5-6min)" << std::endl;
 	std::cin >> whatMesh;
 
+	bool hasBoundingBox = true;
+	char boundingBox = NULL;
+	std::cout << "\nDo you want to execute it alongside a Bounding Box?\n";
+	std::cout << "Options: Yes/No [y/n], Default Option: Yes\n";
+	std::cin >> boundingBox;
+	std::cout << "\n";
+
+	if (boundingBox == 'n') {
+		hasBoundingBox = false;
+	}
+
 	switch (whatMesh) {
-		case 1: m = new Mesh("data/obj/deer.obj", mTransform, white);
-			cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
-			light1 = new PointLightSource(Vector3D(0, 900, -1850), Vector3D(2500000, 2500000, 2500000));
-			light2 = new PointLightSource(Vector3D(-300, 1200, -1700), Vector3D(2500000, 2500000, 2500000));
-			break;
-		case 2: m = new Mesh("data/obj/cat.obj", mTransform, white);
-			cameraToWorld = Matrix4x4::translate(Vector3D(0, 300, -800));
-			light1 = new PointLightSource(Vector3D(50, 400, -550), Vector3D(200000, 200000, 200000));
-			light2 = new PointLightSource(Vector3D(-50, 600, -400), Vector3D(200000, 200000, 200000));
-			break;
-		case 3: m = new Mesh("data/obj/lee.obj", mTransform, white);
-			cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
-			light1 = new PointLightSource(Vector3D(4, 3, -30), Vector3D(1000, 1000, 1000));
-			light2 = new PointLightSource(Vector3D(2, 1, -30), Vector3D(1000, 1000, 1000));
-			break;
-		default:m = new Mesh("data/obj/deer.obj", mTransform, white);
-			cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
-			light1 = new PointLightSource(Vector3D(0, 900, -1950), Vector3D(2500000, 2500000, 2500000));
-			light2 = new PointLightSource(Vector3D(-300, 300, -2000), Vector3D(2500000, 2500000, 2500000));
+	case 1: m = new Mesh("data/obj/deer.obj", mTransform, white, hasBoundingBox);
+		cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
+		light1 = new PointLightSource(Vector3D(0, 900, -1850), Vector3D(2500000, 2500000, 2500000));
+		light2 = new PointLightSource(Vector3D(-300, 1200, -1700), Vector3D(2500000, 2500000, 2500000));
+		break;
+	case 2: m = new Mesh("data/obj/cat.obj", mTransform, white, hasBoundingBox);
+		cameraToWorld = Matrix4x4::translate(Vector3D(0, 300, -800));
+		light1 = new PointLightSource(Vector3D(50, 400, -550), Vector3D(200000, 200000, 200000));
+		light2 = new PointLightSource(Vector3D(-50, 600, -400), Vector3D(200000, 200000, 200000));
+		break;
+	case 3: m = new Mesh("data/obj/lee.obj", mTransform, white, hasBoundingBox);
+		cameraToWorld = Matrix4x4::translate(Vector3D(0, 15, -40));
+		light1 = new PointLightSource(Vector3D(4, 3, -30), Vector3D(1000, 1000, 1000));
+		light2 = new PointLightSource(Vector3D(2, 1, -30), Vector3D(1000, 1000, 1000));
+		break;
+	case 4: m = new Mesh("data/obj/woman.obj", mTransform, white, hasBoundingBox);
+		cameraToWorld = Matrix4x4::translate(Vector3D(0, 50, -200));
+		light1 = new PointLightSource(Vector3D(50, 600, -250), Vector3D(25000, 25000, 25000));
+		light2 = new PointLightSource(Vector3D(25, 100, -140), Vector3D(25000, 25000, 25000));
+		break;
+	default:m = new Mesh("data/obj/deer.obj", mTransform, white, true);
+		cameraToWorld = Matrix4x4::translate(Vector3D(0, 750, -1500));
+		light1 = new PointLightSource(Vector3D(0, 900, -1950), Vector3D(2500000, 2500000, 2500000));
+		light2 = new PointLightSource(Vector3D(-300, 300, -2000), Vector3D(2500000, 2500000, 2500000));
 	}
 	//camera
 	double fovDegrees = 60;
@@ -316,7 +333,6 @@ int main()
 	Shader *depthShader = new DepthShader(Vector3D(0.4, 1, 0.4), 2000, bgColor);
 	Shader *directShader = new DirectShader(bgColor);
 	Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.1, 0.1, 0.1));
-	//Shader *globalShader = new GlobalShader(Vector3D(0.4, 1, 0.4), 8, bgColor, Vector3D(0.04, 0.04, 0.04));
 
 
 	// Declare pointers to all the variables which describe the scene
@@ -325,12 +341,9 @@ int main()
 	std::vector<PointLightSource> *lightSourceList;
 
 	// Build the scene
-	//buildSceneSphere(cam, film, objectsList, lightSourceList);
-	//buildSceneCornellBox(cam, film, objectsList, lightSourceList);
 	buildFinalProjectScene(cam, film, objectsList, lightSourceList);
 
 	// Launch some rays!
-	//raytrace(cam, directShader, film, objectsList, lightSourceList);
 	raytrace(cam, directShader, film, objectsList, lightSourceList);
 
 	// Save the final result to file

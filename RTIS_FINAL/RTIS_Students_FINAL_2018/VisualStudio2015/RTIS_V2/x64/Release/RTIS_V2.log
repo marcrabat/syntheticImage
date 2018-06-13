@@ -1,16 +1,38 @@
-﻿  box.cpp
+﻿  camera.cpp
+  ortographic.cpp
+  perspective.cpp
+  matrix4x4.cpp
+  tester.cpp
+  utils.cpp
+  main.cpp
+  phong.cpp
+  hemisphericalsampler.cpp
+  depthshader.cpp
+  directshader.cpp
+  globalshader.cpp
+  intersectionshader.cpp
+  normalshader.cpp
+  shader.cpp
+  box.cpp
+  infiniteplane.cpp
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(17): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(25): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(38): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\infiniteplane.cpp(46): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
   mesh.cpp
-..\..\src\shapes\mesh.cpp(71): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: vea la declaración de 'fopen'
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\mesh.cpp(84): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(207): note: vea la declaración de 'fopen'
+  shape.cpp
+  sphere.cpp
+  Compilando...
   triangle.cpp
-..\..\src\shapes\triangle.cpp(18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-..\..\src\shapes\triangle.cpp(24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-..\..\src\shapes\triangle.cpp(49): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-..\..\src\shapes\triangle.cpp(55): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(18): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(49): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\marc\desktop\syntheticimage\rtis_final\rtis_students_final_2018\src\shapes\triangle.cpp(55): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
   Generando código
-  37 of 755 functions ( 4.9%) were compiled, the rest were copied from previous compilation.
+  3 of 676 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.exe
-  RTIS_V2.vcxproj -> C:\Users\usuario\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.pdb (Full PDB)
+  RTIS_V2.vcxproj -> C:\Users\Marc\Desktop\syntheticImage\RTIS_FINAL\RTIS_Students_FINAL_2018\VisualStudio2015\RTIS_V2\x64\Release\RTIS_V2.exe

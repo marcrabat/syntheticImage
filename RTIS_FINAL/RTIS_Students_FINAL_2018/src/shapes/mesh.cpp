@@ -15,11 +15,19 @@ std::map<std::string, Mesh*> Mesh::sMeshesLoaded;
 
 std::vector<std::string> tokenize(const std::string& source, const char* delimiters, bool process_strings = false);
 
-Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_)
+Mesh::Mesh(const std::string &name, const Matrix4x4 &t_, Material *material_, bool hasBoundingBox_)
 	:Shape(t_, material_)
 {
+	this->hasBoundingBox = hasBoundingBox_;
 	loadOBJ(name.c_str());
-	boundingBox = new Box(header.aabb_min, header.aabb_max, objectToWorld, material);
+	if (hasBoundingBox == true) {
+		std::cout << "Executing with Bounding Box: \n";
+		boundingBox = new Box(header.aabb_min, header.aabb_max, objectToWorld, material);
+	}
+	else {
+		std::cout << "Executing without Bounding Box: \n";
+	}
+	
 }
 
 void Mesh::clear()
@@ -33,9 +41,11 @@ void Mesh::clear()
 
 bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 {
-	if (!boundingBox->rayIntersectP(ray))
-		return false;
-
+	if (this->hasBoundingBox == true) {
+		if (!boundingBox->rayIntersectP(ray))
+			return false;
+	}
+	
 	if (Utils::getClosestIntersection(ray, triangles, its))
 		return true;
 
@@ -44,8 +54,11 @@ bool Mesh::rayIntersect(const Ray & ray, Intersection & its) const
 
 bool Mesh::rayIntersectP(const Ray & ray) const
 {
-	if (!boundingBox->rayIntersectP(ray))
-		return false;
+	if (this->hasBoundingBox == true) {
+		if (!boundingBox->rayIntersectP(ray))
+			return false;
+	}
+	
 
 	if (Utils::hasIntersection(ray, triangles))
 		return true;
@@ -113,7 +126,6 @@ bool Mesh::loadOBJ(const char* filename)
 		line[i] = 0;
 		pos = pos + i;
 
-		//std::cout << "Line: \"" << line << "\"" << std::endl;
 		if (*line == '#' || *line == 0) continue; //comment
 
 												  //tokenize line
@@ -164,24 +176,10 @@ bool Mesh::loadOBJ(const char* filename)
 				Vector3D pB = vertices[vertex_i+1];
 				Vector3D pC = vertices[vertex_i+2];
 
-
-				/*Vector3D nA = normals[vertex_i];
-				Vector3D nB = normals[vertex_i + 1];
-				Vector3D nC = normals[vertex_i + 2];
-				*/
-
-
 					
 				Triangle * t = new Triangle( pC, pB, pA, material);
 				triangles.push_back(t);
-
-				//add texture
-				//(...)
-
-				//triangles.push_back( VECTOR_INDICES_TYPE(vertex_i, vertex_i+1, vertex_i+2) ); //not needed
-				
-				
-				
+	
 				vertex_i += 3;
 
 				if (indexed_uvs.size() > 0)

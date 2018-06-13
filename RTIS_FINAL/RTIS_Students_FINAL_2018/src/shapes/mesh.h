@@ -18,6 +18,7 @@ public:
 	Mesh(const std::string& name, const Matrix4x4 &t_, Material *material_);
 
 	bool loadOBJ(const char* filename);
+	Mesh(const std::string & name, const Matrix4x4 & t_, Material * material_, bool hasBoundingBox_);
 	void clear();
 
 	bool rayIntersect(const Ray &ray, Intersection &its) const;
@@ -46,6 +47,7 @@ public:
 
 	std::vector<Shape*> triangles;
 	Shape* boundingBox;
+	bool hasBoundingBox = false;
 
 };
 
